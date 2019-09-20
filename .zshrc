@@ -7,20 +7,6 @@ export GOROOT=/usr/local/Cellar/go/1.12.7
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="wezm"
-ZSH_THEME="blinks"
-# ZSH_THEME="agnoster"
-# ZSH_THEME="alanpeabody"
-# ZSH_THEME="clean"
-# ZSH_THEME="fishy"
-# ZSH_THEME="random"
-
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -59,14 +45,10 @@ ZSH_THEME="blinks"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_THEME="custom"
+ZSH_CUSTOM="${HOME}/.zsh_custom.d"
+source "${ZSH_CUSTOM}"/patches.zsh
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
   git-flow

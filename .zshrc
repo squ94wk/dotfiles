@@ -25,13 +25,18 @@ plugins=(
   node
   npm
   kubectl
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-completions
 )
+
+autoload -Uz compinit && compinit 
 
 source $ZSH/oh-my-zsh.sh
 
-# Set CLICOLOR if you want Ansi Colors in iTerm2 
-export CLICOLOR=1
 export TERM=xterm-256color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+
 zstyle ':completion:*' menu select
 
 bindkey "[D" backward-word

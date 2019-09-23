@@ -6,6 +6,9 @@
     editor = vi
 [alias]
     # List alias commands
+    f = fetch -p
+    ff = merge --ff-only
+
     la = "!git config -l | grep alias | cut -c 7-"
     list-alias = "!git la"
     # List commits in increasing detail
@@ -47,7 +50,7 @@
     grep = grep -Ii
 
     # Search for files
-    f = "!git ls-files | grep --color -i"
+    ls = "!git ls-files | grep --color -i"
 
 
     # How many commits per author

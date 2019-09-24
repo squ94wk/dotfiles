@@ -34,13 +34,21 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 
+  autocmd Filetype python setlocal tabstop=4
+  autocmd Filetype python setlocal shiftwidth=4
+
   augroup END
 
 else
 
-  set autoindent		" always set autoindenting on
+  set tabstop=4
+  set shiftwidth=4
 
 endif " has("autocmd")
+
+set autoindent		" always set autoindenting on
+set expandtab
+set smartindent
 
 " Add optional packages.
 "

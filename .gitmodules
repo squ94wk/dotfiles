@@ -7,3 +7,6 @@
 [submodule ".zsh_custom.d/plugins/zsh-completions"]
 	path = .zsh_custom.d/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule ".vim/pack/tpope/start/surround"]
+	path = .vim/pack/tpope/start/surround
+	url = https://tpope.io/vim/surround.git

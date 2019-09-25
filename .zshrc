@@ -1,6 +1,7 @@
 ZSH_CUSTOM="${HOME}/.zsh_custom.d"
-source "${ZSH_CUSTOM}"/env.zsh
-source "${ZSH_CUSTOM}"/patches.zsh
+source "${ZSH_CUSTOM}/env.zsh"
+source "${ZSH_CUSTOM}/patches.zsh"
+if [[ -s "${ZSH_CUSTOM}/local.zsh" ]]; then source "${ZSH_CUSTOM}/local.zsh"; fi
 
 export ZSH="${HOME}/.oh-my-zsh"
 
@@ -22,9 +23,9 @@ plugins=(
   zsh-completions
 )
 
-autoload -Uz compinit && compinit 
-
 source $ZSH/oh-my-zsh.sh
+
+autoload -Uz compinit && compinit 
 
 export TERM=xterm-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'

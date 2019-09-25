@@ -1,18 +1,10 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:${PATH}
-export PATH=/usr/local/go/bin:${PATH}
-export PATH=${HOME}/go/bin:${PATH}
-export GOROOT=/usr/local/Cellar/go/1.12.7
+ZSH_CUSTOM="${HOME}/.zsh_custom.d"
+source "${ZSH_CUSTOM}"/env.zsh
+source "${ZSH_CUSTOM}"/patches.zsh
 
 export ZSH="${HOME}/.oh-my-zsh"
 
-# for tmux, although doesn't seem to work
-export EDITOR=vi
-export VISUAL=vi
-
 ZSH_THEME="custom"
-ZSH_CUSTOM="${HOME}/.zsh_custom.d"
-source "${ZSH_CUSTOM}"/patches.zsh
 
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

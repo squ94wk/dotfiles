@@ -2,6 +2,11 @@ set timeoutlen=1000 ttimeoutlen=0
 
 syntax on
 
+let mapleader=";"
+
+" Delete without register
+nnoremap <leader>d "_d
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -34,11 +39,13 @@ nnoremap <leader>be :CtrlPMRU<cr>
 
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup				" do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
+  set backup				" keep a backup file (restore to previous version)
+  set backupdir=$HOME/.vim/.backup,.
   if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
+    set undofile			" keep an undo file (undo changes after closing)
+    set undodir=$HOME/.vim/.undo,.
   endif
 endif
 

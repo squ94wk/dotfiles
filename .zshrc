@@ -1,44 +1,37 @@
-ZSH_CUSTOM="${HOME}/.zsh_custom.d"
-source "${ZSH_CUSTOM}/env.zsh"
-source "${ZSH_CUSTOM}/patches.zsh"
-if [[ -s "${ZSH_CUSTOM}/local.zsh" ]]; then source "${ZSH_CUSTOM}/local.zsh"; fi
+ZSH="${HOME}/.zsh"
+source "${ZSH}/env.zsh"
+if [[ -s "${ZSH}/local.zsh" ]]; then source "${ZSH}/local.zsh"; fi
+source "${ZSH}/prompt.zsh"
+source "${ZSH}/dirs.zsh"
+source "${ZSH}/smart_opts.zsh" # grep
 
-export ZSH="${HOME}/.oh-my-zsh"
+# plugins
+source "${ZSH}/plugins/vi-mode/zsh-vim-mode.plugin.zsh"
+source "${ZSH}/plugins/autosuggestions/zsh-autosuggestions.zsh"
+source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${ZSH}/plugins/completions/zsh-completions.plugin.zsh"
 
-ZSH_THEME="custom"
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
 
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+HISTSIZE=10000
+HISTFILE="${HOME}/.zsh_history"
+SAVEHIST=10000
 
-plugins=(
-  git-flow
-  tmux
-  docker
-  brew
-  history
-  node
-  npm
-  kubectl
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-completions
-)
 
-source $ZSH/oh-my-zsh.sh
-
-autoload -Uz compinit && compinit 
+autoload -Uz compinit && compinit
 
 export TERM=xterm-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
 zstyle ':completion:*' menu select
-
-bindkey "[D" backward-word
-bindkey "[C" forward-word
-# bindkey "^[a" beginning-of-line
-# bindkey "^[e" end-of-line
-bindkey "^[[D" beginning-of-line
-bindkey "^[[C" end-of-line
-
 
 if [[ -n $IDEA_TERMINAL ]]; then
 	bindkey "\e\eOD" backward-word

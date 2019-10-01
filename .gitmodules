@@ -1,15 +1,18 @@
-[submodule ".zsh_custom.d/plugins/zsh-syntax-highlighting"]
-	path = .zsh_custom.d/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".zsh_custom.d/plugins/zsh-autosuggestions"]
-	path = .zsh_custom.d/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule ".zsh_custom.d/plugins/zsh-completions"]
-	path = .zsh_custom.d/plugins/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions
+[submodule ".zsh/plugins/syntax-highlighting"]
+	path = .zsh/plugins/syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+[submodule ".zsh/plugins/autosuggestions"]
+	path = .zsh/plugins/autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule ".zsh/plugins/completions"]
+	path = .zsh/plugins/completions
+	url = git@github.com:zsh-users/zsh-completions.git
+[submodule ".zsh/plugins/vi-mode"]
+	path = .zsh/plugins/vi-mode
+	url = git@github.com:softmoth/zsh-vim-mode.git
 [submodule ".vim/pack/tpope/start/surround"]
 	path = .vim/pack/tpope/start/surround
-	url = https://tpope.io/vim/surround.git
+	url = git@github.com:tpope/vim-surround.git
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
+	url = git@github.com:ctrlpvim/ctrlp.vim.git

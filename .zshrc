@@ -26,7 +26,11 @@ HISTFILE="${HOME}/.zsh_history"
 SAVEHIST=10000
 
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
 
 export TERM=xterm-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'

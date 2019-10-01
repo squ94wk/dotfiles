@@ -6,9 +6,17 @@ source "${ZSH}/dirs.zsh"
 source "${ZSH}/smart_opts.zsh" # grep
 
 # plugins
+MODE_INDICATOR_PROMPT='INITIAL' # workaround: if not set, vi-mode will return early
+MODE_INDICATOR_VIINS='INSERT'
+MODE_INDICATOR_VICMD='NORMAL'
+MODE_INDICATOR_REPLACE='REPLACE'
+MODE_INDICATOR_SEARCH='SEARCH'
+MODE_INDICATOR_VISUAL='VISUAL'
+MODE_INDICATOR_VLINE='V-LINE'
+
+source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${ZSH}/plugins/vi-mode/zsh-vim-mode.plugin.zsh"
 source "${ZSH}/plugins/autosuggestions/zsh-autosuggestions.zsh"
-source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${ZSH}/plugins/completions/zsh-completions.plugin.zsh"
 
 setopt auto_cd
@@ -32,8 +40,9 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-export TERM=xterm-256color
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+TERM=xterm-256color
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 zstyle ':completion:*' menu select
 

@@ -42,7 +42,11 @@ compinit -C
 
 TERM=xterm-256color
 
+# Default color is not visible on solarized dark
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+
+# Ctrl-Space to partially complete suggestion
+bindkey "^ " forward-word
 
 zstyle ':completion:*' menu select
 

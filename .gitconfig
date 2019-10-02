@@ -63,3 +63,5 @@
     cp = cherry-pick
     co = checkout
     mt = mergetool
+[include]
+    path = .gitconfig.local

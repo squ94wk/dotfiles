@@ -17,6 +17,7 @@ source $VIMRUNTIME/defaults.vim
 
 " Plugins
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/vim-go
 
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {

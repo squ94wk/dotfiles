@@ -10,12 +10,3 @@
 [submodule ".zsh/plugins/vi-mode"]
 	path = .zsh/plugins/vi-mode
 	url = git@github.com:softmoth/zsh-vim-mode.git
-[submodule ".vim/pack/tpope/start/surround"]
-	path = .vim/pack/tpope/start/surround
-	url = git@github.com:tpope/vim-surround.git
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
-	url = git@github.com:ctrlpvim/ctrlp.vim.git
-[submodule "/home/squawk/.vim/bundle/vim-go"]
-	path = /home/squawk/.vim/bundle/vim-go
-	url = git@github.com:fatih/vim-go.git

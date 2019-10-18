@@ -17,7 +17,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 " Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'vim-syntastic/syntastic'
 "Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'

@@ -41,6 +41,10 @@ else
     set undodir=$HOME/.vim/.undo,.
   endif
 endif
+if empty(glob('~/.vim/.swap'))
+  silent !mkdir ~/.vim/.swap > /dev/null 2>&1
+endif
+set directory=$HOME/.vim/.swap,.
 
 " always enable autoindenting
 set tabstop=4

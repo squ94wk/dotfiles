@@ -40,6 +40,9 @@ function exec_after_prompt() {
   fi
 }
 
+zle-line-init() { zle -K vicmd; }
+zle -N zle-line-init
+
 setopt PROMPT_SUBST
 PROMPT='%{%k%}%{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%}:%{%b%F{yellow}%}%~ %{%B%F{cyan}%}$(git_prompt_info)
 %{%f%k%b%}$(exec_after_prompt)'

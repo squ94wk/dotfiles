@@ -1,10 +1,11 @@
+let mapleader=";"
+
 source ~/.vim/plugins.vim           " Load plugins and configuration
 source ~/.vim/statusline.vim        " Custom statusline
 source $VIMRUNTIME/defaults.vim     " Get the defaults that most users want.
 
 " Leader mappings
-let mapleader=";"
-nnoremap <leader>d "_d              
+nnoremap <leader>d "_d
 nnoremap <leader>x "_x
 
 " visuals
@@ -49,7 +50,7 @@ set directory=$HOME/.vim/.swap,.
 " always enable autoindenting
 set tabstop=4
 set shiftwidth=4
-set autoindent		
+set autoindent
 set expandtab
 set smartindent
 
@@ -62,6 +63,8 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
+
+  autocmd BufWritePre * %s/\s\+$//e
 
   augroup END
 endif " has("autocmd")

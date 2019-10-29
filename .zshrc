@@ -6,14 +6,20 @@ export GOROOT=/usr/local/Cellar/go/1.12.7
 
 export ZSH="${HOME}/.oh-my-zsh"
 
+# for tmux, although doesn't seem to work
+export EDITOR=vi
+export VISUAL=vi
 
 ZSH_THEME="custom"
 ZSH_CUSTOM="${HOME}/.zsh_custom.d"
 source "${ZSH_CUSTOM}"/patches.zsh
 
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 plugins=(
-  git
   git-flow
+  tmux
+  docker
   brew
   history
   node
@@ -26,6 +32,7 @@ source $ZSH/oh-my-zsh.sh
 # Set CLICOLOR if you want Ansi Colors in iTerm2 
 export CLICOLOR=1
 export TERM=xterm-256color
+zstyle ':completion:*' menu select
 
 bindkey "[D" backward-word
 bindkey "[C" forward-word

@@ -7,8 +7,6 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'wikitopian/hardmode'
-
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -30,9 +28,6 @@ call plug#end()
 " Disable preview window
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
-
-" Enable HardMode() by default (:call EasyMode() to disable)
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0

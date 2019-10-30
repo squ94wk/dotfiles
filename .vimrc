@@ -32,12 +32,17 @@ call plug#end()
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
 
+syntax enable
 set background=dark
 colorscheme solarized
 
 set timeoutlen=1000 ttimeoutlen=0
 
-syntax on
+hi MatchParen ctermbg=black ctermfg=none cterm=none
+
+set hidden
+set nu
+set relativenumber
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -49,13 +54,8 @@ let g:go_highlight_function_calls = 1
 
 let mapleader=";"
 
-" Delete without register
+" Delete without yanking
 nnoremap <leader>d "_d
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
 
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
@@ -112,6 +112,13 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" always set autoindenting on
+set tabstop=4
+set shiftwidth=4
+set autoindent		
+set expandtab
+set smartindent
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -122,21 +129,9 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 
-  autocmd Filetype python setlocal tabstop=4
-  autocmd Filetype python setlocal shiftwidth=4
-
   augroup END
-
-else
-
-  set tabstop=4
-  set shiftwidth=4
-
 endif " has("autocmd")
 
-set autoindent		" always set autoindenting on
-set expandtab
-set smartindent
 
 " Add optional packages.
 "

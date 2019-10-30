@@ -23,6 +23,7 @@ endif
 set timeoutlen=1000 ttimeoutlen=0
 set hidden
 set completeopt=longest,menuone
+set wildmode=longest,list
 
 " Backup, Swap and Undo files
 if has("vms")

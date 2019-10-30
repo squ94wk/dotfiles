@@ -100,9 +100,17 @@ if has("vms")
   set nobackup				" do not keep a backup file, use versions instead
 else
   set backup				" keep a backup file (restore to previous version)
+
+  if empty(glob('~/.vim/.backup'))
+    silent !mkdir ~/.vim/.backup > /dev/null 2>&1
+  endif
   set backupdir=$HOME/.vim/.backup,.
+
   if has('persistent_undo')
     set undofile			" keep an undo file (undo changes after closing)
+    if empty(glob('~/.vim/.undo'))
+      silent !mkdir ~/.vim/.undo > /dev/null 2>&1
+    endif
     set undodir=$HOME/.vim/.undo,.
   endif
 endif

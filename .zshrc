@@ -47,6 +47,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 # Ctrl-Space to partially complete suggestion
 bindkey "^ " forward-word
+# Don't need ex mode, make it insert mode instead
+bindkey -M vicmd ':' vi-insert
 
 zstyle ':completion:*' menu select
 

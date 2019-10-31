@@ -19,7 +19,6 @@
 
     a = add
     ap = add --patch
-    ai = add --interactive
 
     # Committing
     c = commit
@@ -28,13 +27,12 @@
     # Ammend last commit
     ca = commit --amend --no-edit
 
-    # Reset
-    re = reset
     # Undo one commit
     undo-commit = reset --soft HEAD~
 
     # Rebase
     r = rebase
+    ri = rebase --interactive
     # Rebase interactively from $1 number of commits back
     ra = rebase --abort
     rc = rebase --continue

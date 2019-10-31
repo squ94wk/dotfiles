@@ -1,12 +1,20 @@
-git_prompt_info() {
-  local ref
-  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = "false" ]]; then
-    return 0
-  fi
-  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo "${ref#refs/heads/}"
+#!/usr/bin/env zsh
+function git_prompt_info() {
+  function print_pretty_ref() {
+    local ref
+    ref=$(command git "${@}" symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(command git "${@}" rev-parse --short HEAD 2> /dev/null) || return 0
+    printf "%s" "${ref#refs/heads/}"
+  }
+
+  if [[ "${HOME}" == "${PWD}" ]]; then
+    printf "%s" "dotfiles:"
+    print_pretty_ref "--git-dir=${HOME}/.dotfiles" "--work-tree=${HOME}"
+  else
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = "false" ]]; then
+      return 0
+    fi
+    print_pretty_ref
   fi
 }
 

@@ -4,9 +4,19 @@ source ~/.vim/plugins.vim           " Load plugins and configuration
 source ~/.vim/statusline.vim        " Custom statusline
 source $VIMRUNTIME/defaults.vim     " Get the defaults that most users want.
 
+" Useful mappings
+nnoremap Y y$
 " Leader mappings
 nnoremap <leader>d "_d
+nnoremap <leader>D "_D
 nnoremap <leader>x "_x
+nnoremap <leader>X "_X
+nnoremap <leader>s "_s
+nnoremap <leader>c "_c
+nnoremap <leader>C "_C
+
+nnoremap <silent><leader>o :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " visuals
 syntax enable

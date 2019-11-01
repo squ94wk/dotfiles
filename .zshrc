@@ -6,14 +6,6 @@ source "${ZSH}/dirs.zsh"
 source "${ZSH}/smart_opts.zsh" # grep
 
 # plugins
-MODE_INDICATOR_PROMPT='INITIAL' # workaround: if not set, vi-mode will return early
-MODE_INDICATOR_VIINS='INSERT'
-MODE_INDICATOR_VICMD='NORMAL'
-MODE_INDICATOR_REPLACE='REPLACE'
-MODE_INDICATOR_SEARCH='SEARCH'
-MODE_INDICATOR_VISUAL='VISUAL'
-MODE_INDICATOR_VLINE='V-LINE'
-
 source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${ZSH}/plugins/vi-mode/zsh-vim-mode.plugin.zsh"
 source "${ZSH}/plugins/autosuggestions/zsh-autosuggestions.zsh"

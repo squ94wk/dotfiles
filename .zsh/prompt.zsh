@@ -4,7 +4,7 @@ function git_prompt_info() {
     local ref
     ref=$(command git "${@}" symbolic-ref HEAD 2> /dev/null) || \
     ref=$(command git "${@}" rev-parse --short HEAD 2> /dev/null) || return 0
-    printf "%s" "${ref#refs/heads/}"
+    printf "%%B%s%%b" "${ref#refs/heads/}"
   }
 
   if [[ "${HOME}" == "${PWD}" ]]; then
@@ -57,9 +57,32 @@ function exec_after_prompt() {
 zle-line-init() { zle -K vicmd; }
 zle -N zle-line-init
 
-setopt PROMPT_SUBST
-PROMPT='%{%k%}%{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%}:%{%b%F{yellow}%}%~ %{%B%F{cyan}%}$(git_prompt_info)
-%{%f%k%b%}$(exec_after_prompt)'
+export ZSH_PROMPT_COLOR_USERNAME=103
+export ZSH_PROMPT_COLOR_AT=104
+export ZSH_PROMPT_COLOR_HOSTNAME=103
+export ZSH_PROMPT_COLOR_PATH=214
+export ZSH_PROMPT_COLOR_GIT=246
+export ZSH_PROMPT_COLOR_VIM_MODE=254
 
-RPROMPT='%{%B%F{cyan}%}${MODE_INDICATOR_PROMPT}%{%b%f%}'
+MODE_INDICATOR_PROMPT='INITIAL' # workaround: if not set, vi-mode will return early
+MODE_INDICATOR_VIINS='INSERT'
+MODE_INDICATOR_VICMD='NORMAL'
+MODE_INDICATOR_REPLACE='REPLACE'
+MODE_INDICATOR_SEARCH='SEARCH'
+MODE_INDICATOR_VISUAL='VISUAL'
+MODE_INDICATOR_VLINE='V-LINE'
+
+setopt PROMPT_SUBST
+PROMPT='%{%k%}'
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_USERNAME}}%}%n'
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_AT}}%}@'
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_HOSTNAME}}%}%m '
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_PATH}}%}%~ '
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_GIT}}%}$(git_prompt_info)'
+PROMPT+='
+'
+PROMPT+='%{%f%k%b%}'
+PROMPT+='$(exec_after_prompt)'
+
+RPROMPT='%{%B%F{${ZSH_PROMPT_COLOR_VIM_MODE}}%}${MODE_INDICATOR_PROMPT}%{%b%f%}'
 

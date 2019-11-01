@@ -22,7 +22,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Disable preview window

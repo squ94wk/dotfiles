@@ -9,7 +9,7 @@ function git_prompt_info() {
 
   if [[ "${HOME}" == "${PWD}" ]]; then
     printf "%s" "dotfiles:"
-    print_pretty_ref "--git-dir=${HOME}/.dotfiles" "--work-tree=${HOME}"
+    print_pretty_ref "dot"
   else
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = "false" ]]; then
       return 0

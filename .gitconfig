@@ -25,7 +25,7 @@
     # Committing
     c = commit
     # Commit with message
-    cm = "!cim() { git commit -m \"$1\"; }; cim"
+    cm = commit -m
     # Ammend last commit
     ca = commit --amend --no-edit
 

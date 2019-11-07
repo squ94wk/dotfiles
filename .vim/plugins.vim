@@ -23,6 +23,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 
 "Plug 'altercation/vim-colors-solarized'
+Plug 'doums/darcula'
 call plug#end()
 
 " Disable preview window

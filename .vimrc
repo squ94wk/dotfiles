@@ -21,7 +21,7 @@ nnoremap <silent><leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " visuals
 syntax enable
 set background=dark
-"colorscheme solarized
+colorscheme darcula
 hi MatchParen ctermbg=black ctermfg=none cterm=none
 
 if &t_Co > 2 || has("gui_running")

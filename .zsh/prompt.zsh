@@ -76,9 +76,11 @@ MODE_INDICATOR_VLINE='V|V-LINE'
 setopt PROMPT_SUBST
 PROMPT='%{%k%}'
 # show username & host
-#PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_USERNAME}}%}%n'
-#PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_AT}}%}@'
-#PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_HOSTNAME}}%}%m '
+if in_ssh_session; then
+  PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_USERNAME}}%}%n'
+  PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_AT}}%}@'
+  PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_HOSTNAME}}%}%m '
+fi
 PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_PATH}}%}%~ '
 PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_GIT}}%}$(git_prompt_info)'
 PROMPT+='

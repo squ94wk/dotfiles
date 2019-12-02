@@ -1,5 +1,6 @@
 ZSH="${HOME}/.zsh"
 source "${ZSH}/env.zsh"
+source "${ZSH}/functions.zsh"
 if [[ -s "${ZSH}/local.zsh" ]]; then source "${ZSH}/local.zsh"; fi
 source "${ZSH}/prompt.zsh"
 source "${ZSH}/dirs.zsh"

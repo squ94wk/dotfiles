@@ -6,6 +6,8 @@
     editor = vi
     excludefiles = ~/.gitignore
 [alias]
+    dot = "!git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+
     f = fetch -p
     ff = merge --ff-only
 
@@ -19,22 +21,20 @@
 
     a = add
     ap = add --patch
-    ai = add --interactive
 
     # Committing
     c = commit
     # Commit with message
-    cm = "!cim() { git commit -m \"$1\"; }; cim"
+    cm = commit -m
     # Ammend last commit
     ca = commit --amend --no-edit
 
-    # Reset
-    re = reset
     # Undo one commit
     undo-commit = reset --soft HEAD~
 
     # Rebase
     r = rebase
+    ri = rebase --interactive
     # Rebase interactively from $1 number of commits back
     ra = rebase --abort
     rc = rebase --continue

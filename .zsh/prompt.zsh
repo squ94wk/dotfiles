@@ -4,12 +4,12 @@ function git_prompt_info() {
     local ref
     ref=$(command git "${@}" symbolic-ref HEAD 2> /dev/null) || \
     ref=$(command git "${@}" rev-parse --short HEAD 2> /dev/null) || return 0
-    printf "%s" "${ref#refs/heads/}"
+    printf "%%B%s%%b" "${ref#refs/heads/}"
   }
 
   if [[ "${HOME}" == "${PWD}" ]]; then
     printf "%s" "dotfiles:"
-    print_pretty_ref "--git-dir=${HOME}/.dotfiles" "--work-tree=${HOME}"
+    print_pretty_ref "dot"
   else
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = "false" ]]; then
       return 0
@@ -57,9 +57,35 @@ function exec_after_prompt() {
 zle-line-init() { zle -K vicmd; }
 zle -N zle-line-init
 
-setopt PROMPT_SUBST
-PROMPT='%{%k%}%{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%}:%{%b%F{yellow}%}%~ %{%B%F{cyan}%}$(git_prompt_info)
-%{%f%k%b%}$(exec_after_prompt)'
+ZSH_PROMPT_COLOR_USERNAME=103
+ZSH_PROMPT_COLOR_AT=104
+ZSH_PROMPT_COLOR_HOSTNAME=103
+ZSH_PROMPT_COLOR_PATH=214
+ZSH_PROMPT_COLOR_GIT=246
+ZSH_PROMPT_COLOR_VIM_MODE_LEFT=246
+ZSH_PROMPT_COLOR_VIM_MODE_RIGHT=253
 
-RPROMPT='%{%B%F{cyan}%}${MODE_INDICATOR_PROMPT}%{%b%f%}'
+MODE_INDICATOR_PROMPT=' |INITIAL' # workaround: if not set, vi-mode will return early
+MODE_INDICATOR_VIINS='>|INSERT'
+MODE_INDICATOR_VICMD=':|NORMAL'
+MODE_INDICATOR_REPLACE='R|REPLACE'
+MODE_INDICATOR_SEARCH='/|SEARCH'
+MODE_INDICATOR_VISUAL='v|VISUAL'
+MODE_INDICATOR_VLINE='V|V-LINE'
+
+setopt PROMPT_SUBST
+PROMPT='%{%k%}'
+# show username & host
+#PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_USERNAME}}%}%n'
+#PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_AT}}%}@'
+#PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_HOSTNAME}}%}%m '
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_PATH}}%}%~ '
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_GIT}}%}$(git_prompt_info)'
+PROMPT+='
+'
+PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_VIM_MODE_LEFT}}%}${MODE_INDICATOR_PROMPT%|*} '
+PROMPT+='%{%f%k%b%}'
+PROMPT+='$(exec_after_prompt)'
+
+RPROMPT='%{%B%F{${ZSH_PROMPT_COLOR_VIM_MODE_RIGHT}}%}${MODE_INDICATOR_PROMPT#*|}%{%b%f%}'
 

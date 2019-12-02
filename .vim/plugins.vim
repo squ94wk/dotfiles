@@ -17,9 +17,9 @@ Plug 'fatih/vim-go'
 " Plug 'SirVer/ultisnips'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'vim-syntastic/syntastic'
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 
 "Plug 'altercation/vim-colors-solarized'

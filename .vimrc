@@ -30,6 +30,8 @@ if &t_Co > 2 || has("gui_running")
   nnoremap <leader><leader> :nohl<CR>
 endif
 
+set nu
+set nowrap
 set timeoutlen=1000 ttimeoutlen=0
 set hidden
 set completeopt=longest,menuone

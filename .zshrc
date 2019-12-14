@@ -4,7 +4,8 @@ source "${ZSH}/functions.zsh"
 if [[ -s "${ZSH}/local.zsh" ]]; then source "${ZSH}/local.zsh"; fi
 source "${ZSH}/prompt.zsh"
 source "${ZSH}/dirs.zsh"
-source "${ZSH}/smart_opts.zsh" # grep
+source "${ZSH}/default_options.zsh" # grep, du
+source "${ZSH}/aliases.zsh"
 
 # plugins
 source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"

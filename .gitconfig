@@ -51,6 +51,9 @@
     # Search
     grep = grep -Ii
 
+    # Current branch
+    this = rev-parse --abbrev-ref HEAD
+
     # Search for files
     ls = "!git ls-files | grep --color -i"
 

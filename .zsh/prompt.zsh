@@ -54,7 +54,9 @@ function exec_after_prompt() {
   fi
 }
 
-zle-line-init() { zle -K vicmd; }
+ZSH_PROMPT_INITIAL_MODE="viins"
+
+zle-line-init() { zle -K "${ZSH_PROMPT_INITIAL_MODE}"; }
 zle -N zle-line-init
 
 ZSH_PROMPT_COLOR_USERNAME=103

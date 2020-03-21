@@ -65,3 +65,9 @@
     mt = mergetool
 [include]
     path = .gitconfig.local
+[fetch]
+	default = current
+[pull]
+	default = current
+[push]
+	default = current

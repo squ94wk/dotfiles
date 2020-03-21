@@ -55,7 +55,7 @@
     this = rev-parse --abbrev-ref HEAD
 
     # Search for files
-    ls = "!git ls-files | grep --color -i"
+    ls = "!git ls-files | grep ''"
 
 
     # How many commits per author

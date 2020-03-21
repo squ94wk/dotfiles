@@ -3,7 +3,7 @@
     email = squ94wk@gmail.com
 [core]
     autocrlf = input
-    editor = vi
+    editor = vim
     excludefiles = ~/.gitignore
 [alias]
     dot = "!git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"

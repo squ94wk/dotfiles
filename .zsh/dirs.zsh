@@ -1,3 +1,4 @@
+setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
@@ -23,7 +24,3 @@ function d () {
   fi
 }
 #compdef _dirs d
-
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'

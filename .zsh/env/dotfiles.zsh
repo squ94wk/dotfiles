@@ -1,1 +1,0 @@
-export VIMRC=~/.vimrc

@@ -1,10 +1,9 @@
 ZSH="${HOME}/.zsh"
 source "${ZSH}/env.zsh"
 source "${ZSH}/functions.zsh"
-if [[ -s "${ZSH}/local.zsh" ]]; then source "${ZSH}/local.zsh"; fi
+source "${ZSH}/local.zsh"
 source "${ZSH}/prompt.zsh"
 source "${ZSH}/dirs.zsh"
-source "${ZSH}/default_options.zsh" # grep, du
 source "${ZSH}/aliases.zsh"
 
 # plugins
@@ -12,11 +11,6 @@ source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${ZSH}/plugins/vi-mode/zsh-vim-mode.plugin.zsh"
 source "${ZSH}/plugins/autosuggestions/zsh-autosuggestions.zsh"
 source "${ZSH}/plugins/completions/zsh-completions.plugin.zsh"
-
-setopt auto_cd
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushdminus
 
 setopt hist_ignore_space
 setopt hist_ignore_dups

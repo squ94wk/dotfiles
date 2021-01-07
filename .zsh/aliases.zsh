@@ -32,6 +32,7 @@ alias du="du $DU_OPTIONS"
 
 alias vi="vim"
 
-alias l='ls -lah --color'
-alias ll='ls -lh --color'
-alias la='ls -lAh --color'
+# ls
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'

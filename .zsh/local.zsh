@@ -1,3 +1,3 @@
-for file in "${ZSH}/local"; do
+for file in "${ZSH}"/local/*; do
     source "${file}"
 done

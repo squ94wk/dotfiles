@@ -33,8 +33,8 @@
     undo-commit = reset --soft HEAD~
 
     # Rebase
-    r = rebase
-    ri = rebase --interactive
+    rb = rebase --autostash
+    ri = rebase --interactive --autostash
     # Rebase interactively from $1 number of commits back
     ra = rebase --abort
     rc = rebase --continue

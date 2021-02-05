@@ -65,6 +65,7 @@
     br = branch
     cp = cherry-pick
     co = checkout
+    sw = switch
     mt = mergetool
 [include]
     path = .gitconfig.local

@@ -3,6 +3,8 @@ let mapleader=";"
 source ~/.vim/plugins.vim           " Load plugins and configuration
 source ~/.vim/statusline.vim        " Custom statusline
 source $VIMRUNTIME/defaults.vim     " Get the defaults that most users want.
+source ~/.vim/filetypes.vim         " File type customization
+source ~/.vim/view.vim              " Save folds
 
 " Useful mappings
 nnoremap Y y$

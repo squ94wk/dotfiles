@@ -18,42 +18,6 @@ function git_prompt_info() {
   fi
 }
 
-function exec_after_prompt() {
-  set -e
-
-  exec 1>/dev/null
-  exec 2>/dev/null
-
-  if [[ -n $TMUX ]]; then
-    local pane_count
-    pane_count="$(tmux list-panes | wc -l | awk '{ print $1 }')"
-    if [[ $pane_count -gt 1 ]]; then
-      exit 0
-    fi
-
-    local pane_id
-    pane_id="${TMUX_PANE}"
-    local dir
-    dir="$PWD"
-
-    if [ "$HOME" = "$dir" ]; then
-      local window_title
-      window_title="~"
-    else
-      local git_root
-      git_root="$(git rev-parse --show-toplevel 2>/dev/null)"
-      if [ -n "$git_root" ]; then
-        dir="$git_root"
-      fi
-
-      local window_title
-      window_title="$(basename "$dir")"
-    fi
-
-    tmux rename-window -t "$pane_id" "$window_title"
-  fi
-}
-
 ZSH_PROMPT_COLOR_USERNAME=103
 ZSH_PROMPT_COLOR_AT=104
 ZSH_PROMPT_COLOR_HOSTNAME=103

@@ -7,6 +7,6 @@
 [submodule ".zsh/plugins/completions"]
 	path = .zsh/plugins/completions
 	url = git@github.com:zsh-users/zsh-completions.git
-[submodule ".zsh/plugins/vi-mode"]
-	path = .zsh/plugins/vi-mode
-	url = git@github.com:softmoth/zsh-vim-mode.git
+[submodule ".zsh/plugins/zvm"]
+	path = .zsh/plugins/zvm
+	url = https://github.com/jeffreytse/zsh-vi-mode

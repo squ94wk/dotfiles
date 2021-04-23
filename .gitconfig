@@ -10,6 +10,7 @@
 
     f = fetch -p
     ff = merge --ff-only
+    fff = "!git f && git ff"
 
     # Log in increasing detail
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
@@ -53,6 +54,7 @@
 
     # Current branch
     this = rev-parse --abbrev-ref HEAD
+    sha = rev-parse HEAD
 
     # Search for files
     ls = "!git ls-files | grep ''"

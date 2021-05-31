@@ -46,6 +46,7 @@
 
     # Current branch
     this = rev-parse --abbrev-ref HEAD
+    sha = rev-parse HEAD
 
     # Search for files
     ls = "!git ls-files | grep ''"

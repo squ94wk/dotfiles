@@ -1,8 +1,8 @@
 ZSH="${HOME}/.zsh"
 source "${ZSH}/env.zsh"
 source "${ZSH}/functions.zsh"
-source "${ZSH}/local.zsh"
 source "${ZSH}/prompt.zsh"
+source "${ZSH}/local.zsh"
 source "${ZSH}/dirs.zsh"
 source "${ZSH}/aliases.zsh"
 

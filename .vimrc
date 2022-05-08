@@ -6,6 +6,10 @@ source $VIMRUNTIME/defaults.vim     " Get the defaults that most users want.
 source ~/.vim/filetypes.vim         " File type customization
 source ~/.vim/view.vim              " Save folds
 
+" Disable annoying defaults
+nnoremap q: <nop>
+nnoremap Q <nop>
+
 " Useful mappings
 nnoremap Y y$
 " Leader mappings
@@ -84,3 +88,4 @@ if has("autocmd")
 
   augroup END
 endif " has("autocmd")
+

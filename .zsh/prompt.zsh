@@ -1,28 +1,20 @@
 #!/usr/bin/env zsh
-function git_prompt_info() {
-  function print_pretty_ref() {
-    local ref
-    ref=$(command git "${@}" symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git "${@}" rev-parse --short HEAD 2> /dev/null) || return 0
-    printf "%%B%s%%b" "${ref#refs/heads/}"
-  }
 
-  if [[ "${HOME}" == "${PWD}" ]]; then
-    printf "%s" "dotfiles:"
-    print_pretty_ref "dot"
-  else
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = "false" ]]; then
-      return 0
-    fi
-    print_pretty_ref
-  fi
+function prompt_bold() {
+    printf "%%B%s%%b" "$@"
 }
 
+function prompt_color() {
+    local color="$1"
+    shift
+    printf "%%F{$color}%s%%f" "$@"
+}
+
+ZSH_PROMPT_COLOR_NEUTRAL=246
 ZSH_PROMPT_COLOR_USERNAME=103
 ZSH_PROMPT_COLOR_AT=104
 ZSH_PROMPT_COLOR_HOSTNAME=103
 ZSH_PROMPT_COLOR_PATH=214
-ZSH_PROMPT_COLOR_GIT=246
 ZSH_PROMPT_COLOR_VIM_MODE_LEFT=246
 ZSH_PROMPT_COLOR_VIM_MODE_RIGHT=253
 
@@ -46,18 +38,27 @@ function zvm_after_select_vi_mode() {
   esac
 }
 
+USER_PROMPTS=
+export USER_PROMPTS
+prompt_add() {
+    USER_PROMPTS+=" "
+    USER_PROMPTS+="$1"
+}
+
+prompt_print_user_prompts() {
+    eval "echo -ne \"${USER_PROMPTS}\""
+}
+
 setopt PROMPT_SUBST
 PROMPT='%{%k%}'
-# show username & host
-if in_ssh_session; then
-  PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_USERNAME}}%}%n'
-  PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_AT}}%}@'
-  PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_HOSTNAME}}%}%m '
-fi
-PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_PATH}}%}%~ '
-PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_GIT}}%}$(git_prompt_info)'
+PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_PATH} "%~")'
+PROMPT+='$(prompt_print_user_prompts)'
 PROMPT+='
 '
-PROMPT+='%{%b%F{${ZSH_PROMPT_COLOR_VIM_MODE_LEFT}}%}${ZSH_PROMPT_VIM_MODE_INDICATOR} '
+PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_VIM_MODE_LEFT} "${ZSH_PROMPT_VIM_MODE_INDICATOR} ")'
 PROMPT+='%{%f%k%b%}'
+
+for file in "${ZSH}"/prompt/*.zsh; do
+    source "${file}"
+done
 

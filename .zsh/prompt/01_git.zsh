@@ -1,5 +1,3 @@
-#!/user/bin/env zsh
-
 function git_prompt_info() {
   function print_pretty_ref() {
     local ref

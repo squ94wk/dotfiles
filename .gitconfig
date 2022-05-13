@@ -8,7 +8,7 @@
 [alias]
     dot = "!git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 
-    f = fetch -p
+    f = fetch --all --prune --tags
     ff = merge --ff-only
     fff = "!git f && git ff"
 

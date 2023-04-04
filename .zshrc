@@ -2,9 +2,10 @@ ZSH="${HOME}/.zsh"
 source "${ZSH}/env.zsh"
 source "${ZSH}/functions.zsh"
 source "${ZSH}/prompt.zsh"
-source "${ZSH}/local.zsh"
 source "${ZSH}/dirs.zsh"
 source "${ZSH}/aliases.zsh"
+source "${ZSH}/autocomplete.zsh"
+source "${ZSH}/local.zsh"
 
 # plugins
 source "${ZSH}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -32,13 +33,6 @@ setopt share_history
 HISTSIZE=10000
 HISTFILE="${HOME}/.zsh_history"
 SAVEHIST=10000
-
-
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-    compinit
-done
-compinit -C
 
 TERM=xterm-256color
 

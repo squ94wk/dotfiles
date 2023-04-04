@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# don't print '(venv)' when in virtual env
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 function prompt_bold() {
     printf "%%B%s%%b" "$@"
 }

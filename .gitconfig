@@ -11,6 +11,7 @@
     f = fetch --all --prune --tags
     ff = merge --ff-only
     fff = "!git f && git ff"
+    ffff = "!git f -f && git ff"
 
     # Log in increasing detail
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
@@ -18,7 +19,7 @@
     lll = log -u
     lg = log --graph --oneline
 
-    s = status -s
+    s = status -s --untracked-files=no
 
     a = add
     ap = add --patch
@@ -51,6 +52,9 @@
     # Search for files
     ls = "!git ls-files | grep ''"
 
+    # Track remote branch
+    track = "!git branch --set-upstream-to=origin/$(git this)"
+
 
     # How many commits per author
     rank = shortlog -n -s --no-merges
@@ -63,8 +67,11 @@
     mt = mergetool
 [include]
     path = .gitconfig.local
+[rebase]
+    updateRefs = true
 [fetch]
 	default = current
+    prune = true
 [pull]
 	default = current
 [push]

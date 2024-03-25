@@ -6,7 +6,7 @@
     editor = vim
     excludefiles = ~/.gitignore
 [alias]
-    dot = "!git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+    dot = "!git --git-dir=${HOME}/.dot --work-tree=${HOME}"
 
     f = fetch --all --prune --tags
     ff = merge --ff-only
@@ -80,3 +80,5 @@
 	default = current
 [push]
 	default = current
+[init]
+	defaultBranch = main

@@ -10,3 +10,12 @@
 [submodule ".zsh/plugins/zvm"]
 	path = .zsh/plugins/zvm
 	url = https://github.com/jeffreytse/zsh-vi-mode
+[submodule "/Users/jmende/.tmux/plugins/tpm"]
+	path = /Users/jmende/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "/Users/jmende/.zsh/plugins/autocomplete"]
+	path = /Users/jmende/.zsh/plugins/autocomplete
+	url = https://github.com/marlonrichert/zsh-autocomplete.git
+[submodule "/Users/jmende/.zsh/plugins/vim-mode"]
+	path = /Users/jmende/.zsh/plugins/vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode.git

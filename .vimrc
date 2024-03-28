@@ -1,5 +1,9 @@
 let mapleader=";"
 
+" Fix kubectl "there was a problem with the editor 'vi'
+" https://stackoverflow.com/questions/69363317/error-there-was-a-problem-with-the-editor-vi-while-trying-to-edit-a-deploy
+set re=1
+
 source ~/.vim/plugins.vim           " Load plugins and configuration
 source ~/.vim/statusline.vim        " Custom statusline
 source $VIMRUNTIME/defaults.vim     " Get the defaults that most users want.

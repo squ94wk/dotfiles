@@ -1,19 +1,23 @@
 function git_prompt_info() {
-  function print_pretty_ref() {
-    local ref
-    ref=$(command git "${@}" symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git "${@}" rev-parse --short HEAD 2> /dev/null) || return 0
-    prompt_bold "${ref#refs/heads/}"
-  }
-
-  if [[ "${HOME}" == "${PWD}" ]]; then
+  local git
+  if [[ "${PWD}" == "${HOME}" ]]; then
+    git=(git dot)
     printf "%s" "dotfiles:"
-    print_pretty_ref "dot"
   else
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = "false" ]]; then
-      return 0
-    fi
-    print_pretty_ref
+    git=git
+  fi
+
+  if ! $git rev-parse --is-inside-work-tree &> /dev/null; then
+    return 0
+  fi
+
+  local ref
+  ref=$($git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$($git rev-parse --short HEAD 2> /dev/null) || return 0
+  prompt_bold "${ref#refs/heads/}"
+
+  if $git s | grep -E '^[MDAR]' &>/dev/null; then
+      printf "%s" "+"
   fi
 }
 

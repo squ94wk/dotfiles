@@ -1,0 +1,35 @@
+install_path: /usr/local/bin
+
+# renovate: datasource=github-releases depName=istio/istio
+istioctl_version: 1.22.1
+
+# renovate: datasource=github-releases depName=loft-sh/vcluster
+vcluster_version: 0.22.2
+
+# renovate: datasource=github-releases depName=cilium/cilium-cli
+cilium_cli_version: 0.18.2
+
+# renovate: datasource=github-releases depName=cilium/hubble
+hubble_version: 0.13.5
+
+# renovate: datasource=golang-version
+go_version: 1.23.6
+
+# renovate: datasource=github-releases depName=kubernetes/kubectl
+kubectl_version: 1.31.1
+
+# renovate: datasource=github-releases depName=helm/helm
+helm_version: 3.15.2
+
+# renovate: datasource=github-releases depName=kubernetes-sigs/kind
+kind_version: 0.27.0
+
+# renovate: datasource=github-releases depName=hashicorp/terraform
+terraform_version: 1.9.2
+
+# renovate: datasource=github-releases depName=derailed/k9s
+k9s_version: 0.32.5
+
+# renovate: datasource=github-releases depName=brimdata/zed
+zed_version: 0.180.3
+

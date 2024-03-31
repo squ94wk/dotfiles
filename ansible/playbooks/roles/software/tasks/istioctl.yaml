@@ -1,0 +1,31 @@
+- name: Look up binary
+  ansible.builtin.stat:
+    path: "{{ install_path }}/istioctl{{ istioctl_version }}"
+  register: istioctl_stat
+
+- name: Install
+  block:
+    - name: Create temp dir
+      ansible.builtin.tempfile:
+        state: directory
+      register: tmp_dir
+
+    - name: Fetch istioctl
+      ansible.builtin.unarchive:
+        src: "https://github.com/istio/istio/releases/download/{{ istioctl_version }}/istio-{{ istioctl_version }}-linux-amd64.tar.gz"
+        remote_src: true
+        dest: "{{ tmp_dir.path }}"
+
+    - name: Move binary
+      ansible.builtin.copy:
+        src: "{{ tmp_dir.path }}/istio-{{ istioctl_version }}/bin/istioctl"
+        remote_src: true
+        dest: "{{ install_path }}/istioctl{{ istioctl_version }}"
+        mode: 0755
+
+    - name: Create symlink
+      ansible.builtin.file:
+        state: link
+        src: "{{ install_path }}/istioctl{{ istioctl_version }}"
+        dest: "{{ install_path }}/istioctl"
+  when: not istioctl_stat.stat.exists

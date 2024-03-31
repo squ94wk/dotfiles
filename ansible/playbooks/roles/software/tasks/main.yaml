@@ -1,0 +1,33 @@
+- name: Install istioctl
+  include_tasks: ./istioctl.yaml
+
+- name: Install vcluster
+  include_tasks: ./vcluster.yaml
+
+- name: Install Zed editor
+  include_tasks: ./zed.yaml
+
+- name: Install Go
+  include_tasks: ./go.yaml
+
+- name: Install kubectl
+  include_tasks: ./kubectl.yaml
+
+- name: Install Helm
+  include_tasks: ./helm.yaml
+
+- name: Install k9s
+  include_tasks: ./k9s.yaml
+
+- name: Install kind
+  include_tasks: ./kind.yaml
+
+- name: Install terraform
+  include_tasks: ./terraform.yaml
+
+- name: Install cilium
+  include_tasks: ./cilium.yaml
+
+- name: Install hubble
+  include_tasks: ./hubble.yaml
+

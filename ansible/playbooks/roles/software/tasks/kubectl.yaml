@@ -1,0 +1,21 @@
+- name: Fetch kubectl
+  ansible.builtin.uri:
+    url: "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
+    dest: "{{ install_path }}/kubectl{{ kubectl_version }}"
+    creates: "{{ install_path }}/kubectl{{ kubectl_version }}"
+    mode: 0755
+  register: kubectl_fetch
+
+- name: Create symlink
+  ansible.builtin.file:
+    state: link
+    src: "{{ install_path }}/kubectl{{ kubectl_version }}"
+    dest: "{{ install_path }}/kubectl"
+  when: kubectl_fetch.changed
+
+- name: Create alias symlink
+  ansible.builtin.file:
+    state: link
+    src: "{{ install_path }}/kubectl{{ kubectl_version }}"
+    dest: "{{ install_path }}/k"
+  when: kubectl_fetch.changed

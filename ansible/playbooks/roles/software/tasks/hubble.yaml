@@ -1,0 +1,31 @@
+- name: Look up binary
+  ansible.builtin.stat:
+    path: "{{ install_path }}/hubble{{ hubble_version }}"
+  register: hubble_stat
+
+- name: Install
+  block:
+    - name: Create temp dir
+      ansible.builtin.tempfile:
+        state: directory
+      register: tmp_dir
+
+    - name: Fetch hubble
+      ansible.builtin.unarchive:
+        src: "https://github.com/cilium/hubble/releases/download/v{{ hubble_version }}/hubble-linux-amd64.tar.gz"
+        remote_src: true
+        dest: "{{ tmp_dir.path }}"
+
+    - name: Move binary
+      ansible.builtin.copy:
+        src: "{{ tmp_dir.path }}/hubble"
+        remote_src: true
+        dest: "{{ install_path }}/hubble{{ hubble_version }}"
+        mode: 0755
+
+    - name: Create symlink
+      ansible.builtin.file:
+        state: link
+        src: "{{ install_path }}/hubble{{ hubble_version }}"
+        dest: "{{ install_path }}/hubble"
+  when: not hubble_stat.stat.exists

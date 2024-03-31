@@ -1,0 +1,31 @@
+- name: Look up binary
+  ansible.builtin.stat:
+    path: "{{ install_path }}/cilium{{ cilium_cli_version }}"
+  register: cilium_stat
+
+- name: Install
+  block:
+    - name: Create temp dir
+      ansible.builtin.tempfile:
+        state: directory
+      register: tmp_dir
+
+    - name: Fetch cilium
+      ansible.builtin.unarchive:
+        src: "https://github.com/cilium/cilium-cli/releases/download/v{{ cilium_cli_version }}/cilium-linux-amd64.tar.gz"
+        remote_src: true
+        dest: "{{ tmp_dir.path }}"
+
+    - name: Move binary
+      ansible.builtin.copy:
+        src: "{{ tmp_dir.path }}/cilium"
+        remote_src: true
+        dest: "{{ install_path }}/cilium{{ cilium_cli_version }}"
+        mode: 0755
+
+    - name: Create symlink
+      ansible.builtin.file:
+        state: link
+        src: "{{ install_path }}/cilium{{ cilium_cli_version }}"
+        dest: "{{ install_path }}/cilium"
+  when: not cilium_stat.stat.exists

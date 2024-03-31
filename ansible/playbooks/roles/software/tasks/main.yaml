@@ -1,0 +1,8 @@
+- name: Install Go
+  include_tasks: ./go.yaml
+
+- name: Install kubectl
+  include_tasks: ./kubectl.yaml
+
+- name: Install terraform
+  include_tasks: ./terraform.yaml

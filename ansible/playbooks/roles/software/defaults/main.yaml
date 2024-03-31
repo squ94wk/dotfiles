@@ -1,0 +1,5 @@
+install_path: /usr/local/bin
+
+go_version: 1.22.1
+kubectl_version: 1.29.2
+terraform_version: 1.7.5

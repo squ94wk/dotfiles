@@ -1,0 +1,33 @@
+- name: Look up binary
+  ansible.builtin.stat:
+    path: "{{ install_path }}/go{{ go_version }}"
+  register: go_stat
+
+- name: Install
+  block:
+    - name: Create temp dir
+      ansible.builtin.tempfile:
+        state: directory
+      register: tmp_dir
+
+    - name: Fetch go
+      ansible.builtin.unarchive:
+        src: "https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
+        remote_src: true
+        dest: "{{ tmp_dir.path }}"
+        include:
+          - go/bin/go
+
+    - name: Move binary
+      ansible.builtin.copy:
+        src: "{{ tmp_dir.path }}/go/bin/go"
+        remote_src: true
+        dest: "{{ install_path }}/go{{ go_version }}"
+        mode: 0755
+
+    - name: Create symlink
+      ansible.builtin.file:
+        state: link
+        src: "{{ install_path }}/go{{ go_version }}"
+        dest: "{{ install_path }}/go"
+  when: not go_stat.stat.exists

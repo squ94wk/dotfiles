@@ -30,6 +30,6 @@ terraform_version: 1.11.3
 # renovate: datasource=github-releases depName=derailed/k9s
 k9s_version: 0.32.5
 
-# renovate: datasource=github-releases depName=brimdata/zed
+# renovate: datasource=github-releases depName=zed-industries/zed
 zed_version: 0.180.3
 

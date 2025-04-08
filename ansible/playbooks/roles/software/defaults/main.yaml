@@ -10,7 +10,7 @@ vcluster_version: 0.24.0
 cilium_cli_version: 0.18.3
 
 # renovate: datasource=github-releases depName=cilium/hubble
-hubble_version: 0.13.6
+hubble_version: 1.17.2
 
 # renovate: datasource=golang-version
 go_version: 1.23.6

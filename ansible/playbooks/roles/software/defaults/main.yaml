@@ -4,13 +4,13 @@ install_path: /usr/local/bin
 istioctl_version: 1.25.1
 
 # renovate: datasource=github-releases depName=loft-sh/vcluster
-vcluster_version: 0.24.0
+vcluster_version: 0.24.1
 
 # renovate: datasource=github-releases depName=cilium/cilium-cli
 cilium_cli_version: 0.18.3
 
 # renovate: datasource=github-releases depName=cilium/hubble
-hubble_version: 0.13.6
+hubble_version: 1.17.2
 
 # renovate: datasource=golang-version
 go_version: 1.23.6
@@ -19,17 +19,17 @@ go_version: 1.23.6
 kubectl_version: 1.31.1
 
 # renovate: datasource=github-releases depName=helm/helm
-helm_version: 3.17.2
+helm_version: 3.17.3
 
 # renovate: datasource=github-releases depName=kubernetes-sigs/kind
 kind_version: 0.27.0
 
 # renovate: datasource=github-releases depName=hashicorp/terraform
-terraform_version: 1.11.3
+terraform_version: 1.11.4
 
 # renovate: datasource=github-releases depName=derailed/k9s
 k9s_version: 0.32.5
 
 # renovate: datasource=github-releases depName=zed-industries/zed
-zed_version: 0.180.3
+zed_version: 0.181.5
 

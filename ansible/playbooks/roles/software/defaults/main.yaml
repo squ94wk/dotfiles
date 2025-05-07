@@ -1,7 +1,7 @@
 install_path: /usr/local/bin
 
 # renovate: datasource=github-releases depName=istio/istio
-istioctl_version: 1.25.1
+istioctl_version: 1.25.2
 
 # renovate: datasource=github-releases depName=loft-sh/vcluster
 vcluster_version: 0.24.1
@@ -10,7 +10,7 @@ vcluster_version: 0.24.1
 cilium_cli_version: 0.18.3
 
 # renovate: datasource=github-releases depName=cilium/hubble
-hubble_version: 1.17.2
+hubble_version: 1.17.3
 
 # renovate: datasource=golang-version
 go_version: 1.23.6
@@ -31,5 +31,5 @@ terraform_version: 1.11.4
 k9s_version: 0.32.5
 
 # renovate: datasource=github-releases depName=zed-industries/zed
-zed_version: 0.181.5
+zed_version: 0.185.10
 

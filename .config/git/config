@@ -1,0 +1,82 @@
+[user]
+    name = squ94wk
+    email = squ94wk@gmail.com
+[core]
+    autocrlf = input
+    editor = vim
+    excludefiles = "${XDG_CONFIG_HOME}/.gitignore"
+[alias]
+    f = fetch --all --prune --tags
+    ff = merge --ff-only
+    fff = "!git f && git ff"
+    ffff = "!git f -f && git ff"
+    fm = "!git fetch origin $(git config init.defaultBranch):$(git config init.defaultBranch)"
+
+    # Log in increasing detail
+    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lll = log -u
+    lg = log --graph --oneline
+
+    s = status -s --untracked-files=no
+
+    a = add
+    ap = add --patch
+
+    # Committing
+    c = commit
+    # Commit with message
+    cm = commit -m
+    # Ammend last commit
+    ca = commit --amend --no-edit
+
+    # Undo one commit
+    undo-commit = reset --soft HEAD~
+
+    # Rebase
+    rb = rebase --autostash
+    rbm = "!git rebase --autostash $(git config init.defaultBranch)"
+    ri = rebase --interactive --autostash
+    # Rebase interactively from $1 number of commits back
+    ra = rebase --abort
+    rc = rebase --continue
+    rs = rebase --skip
+
+    # Search
+    grep = grep -Ii
+
+    # Current branch
+    this = rev-parse --abbrev-ref HEAD
+    sha = rev-parse HEAD
+
+    # Search for files
+    ls = "!git ls-files | grep ''"
+
+    # Track remote branch
+    track = "!git branch --set-upstream-to=origin/$(git this)"
+
+    # Clean up branches
+    gcb = "!git branch --merged | grep -v -E \"master|main|$(git this)\" | while read -r branch; do git branch -d $branch; done"
+
+    # How many commits per author
+    rank = shortlog -n -s --no-merges
+
+    # Abbreviations
+    br = branch
+    cp = cherry-pick
+    co = checkout
+    sw = switch
+    mt = mergetool
+[include]
+    path = .gitconfig.local
+[rebase]
+    updateRefs = true
+[fetch]
+	default = current
+    prune = true
+[pull]
+	default = current
+[push]
+	default = current
+[init]
+	defaultBranch = main

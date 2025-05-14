@@ -30,9 +30,8 @@ DU_OPTIONS=""
 DU_OPTIONS+=" -h"
 alias du="du $DU_OPTIONS"
 
-alias vi="vim"
-
 # ls
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
+LS_OPTIONS="--color=always"
+alias l="ls -lah $LS_OPTIONS"
+alias ll="ls -lh $LS_OPTIONS"
+alias la="ls -lAh $LS_OPTIONS"

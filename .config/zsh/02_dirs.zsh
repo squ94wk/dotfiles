@@ -23,4 +23,4 @@ function d () {
     dirs -v | head -10
   fi
 }
-#compdef _dirs d
+

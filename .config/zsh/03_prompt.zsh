@@ -48,7 +48,3 @@ PROMPT+='
 PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_VIM_MODE_LEFT} "${MODE_INDICATOR_PROMPT} ")'
 PROMPT+='%{%f%k%b%}'
 
-for file in "${ZSH}"/prompt/*.zsh; do
-    source "${file}"
-done
-

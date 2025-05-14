@@ -4,10 +4,8 @@
 [core]
     autocrlf = input
     editor = vim
-    excludefiles = ~/.gitignore
+    excludefiles = "${XDG_CONFIG_HOME}/.gitignore"
 [alias]
-    dot = "!git --git-dir=${HOME}/.dot --work-tree=${HOME}"
-
     f = fetch --all --prune --tags
     ff = merge --ff-only
     fff = "!git f && git ff"

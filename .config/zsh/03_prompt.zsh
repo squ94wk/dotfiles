@@ -29,19 +29,39 @@ MODE_INDICATOR_VISUAL='v'
 MODE_INDICATOR_VLINE='V'
 
 USER_PROMPTS=
+USER_RPROMPTS=
 export USER_PROMPTS
+export USER_RPROMPTS
 prompt_add() {
-    USER_PROMPTS+=" "
-    USER_PROMPTS+="$1"
+    case $1 in
+        right)
+            USER_RPROMPTS+=" $2"
+            ;;
+        left)
+            USER_PROMPTS+=" $2"
+            ;;
+        *)
+            USER_PROMPTS+=" $1"
+            ;;
+    esac
 }
 
 prompt_print_user_prompts() {
-    eval "echo -ne \"${USER_PROMPTS}\""
+    # we wanna expand twice
+	line="${USER_PROMPTS}"
+    eval "echo -ne $line"
 }
 
 setopt PROMPT_SUBST
+
+TMOUT=10
+TRAPALRM () {
+    zle reset-prompt
+}
+
+prompt_add '$(prompt_color ${ZSH_PROMPT_COLOR_PATH} "%~")'
+
 PROMPT='%{%k%}'
-PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_PATH} "%~")'
 PROMPT+='$(prompt_print_user_prompts)'
 PROMPT+='
 '

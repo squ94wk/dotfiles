@@ -16,7 +16,7 @@
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     lll = log -u
-    lg = log --graph --oneline
+    lg = log --graph --oneline -n10
 
     s = status -s --untracked-files=no
 

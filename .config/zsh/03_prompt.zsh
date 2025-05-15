@@ -48,14 +48,16 @@ prompt_add() {
 
 prompt_print_user_prompts() {
     # we wanna expand twice
-	line="${USER_PROMPTS}"
-    eval "echo -ne $line"
+    eval "echo -ne \"${USER_PROMPTS}\""
 }
 
 setopt PROMPT_SUBST
 
 TMOUT=10
 TRAPALRM () {
+    if pidof fzf >/dev/null; then
+        return;
+    fi
     zle reset-prompt
 }
 
@@ -63,8 +65,6 @@ prompt_add '$(prompt_color ${ZSH_PROMPT_COLOR_PATH} "%~")'
 
 PROMPT='%{%k%}'
 PROMPT+='$(prompt_print_user_prompts)'
-PROMPT+='
-'
-PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_VIM_MODE_LEFT} "${MODE_INDICATOR_PROMPT} ")'
+#PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_VIM_MODE_LEFT} "${MODE_INDICATOR_PROMPT} ")'
 PROMPT+='%{%f%k%b%}'
 

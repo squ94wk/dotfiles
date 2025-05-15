@@ -1,10 +1,6 @@
 function git_prompt_info() {
-  local git
   if [[ "${PWD}" == "${HOME}" ]]; then
-    git=(git dot)
     printf "%s" "dotfiles:"
-  else
-    git=git
   fi
 
   if ! $git rev-parse --is-inside-work-tree &> /dev/null; then

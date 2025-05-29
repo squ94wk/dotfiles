@@ -1,0 +1,21 @@
+[
+  {
+    "bindings": {
+      "ctrl-n": ["workspace::SendKeystrokes", "down"],
+      "ctrl-p": ["workspace::SendKeystrokes", "up"],
+      "ctrl-w": ["workspace::SendKeystrokes", "alt-backspace"],
+      "escape escape": "terminal_panel::ToggleFocus",
+      "ctrl-escape": "terminal_panel::ToggleFocus"
+    },
+    "context": "Terminal"
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "g f": "project_panel::ToggleFocus",
+      "g e": "tab_switcher::Toggle",
+      "g t": "terminal_panel::ToggleFocus",
+      "g p": "file_finder::Toggle"
+    }
+  }
+]

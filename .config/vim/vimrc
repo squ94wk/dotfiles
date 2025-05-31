@@ -1,9 +1,3 @@
-call plug#begin("$XDG_CONFIG_HOME/vim/plugins")
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
-call plug#end()
-
 source $VIMRUNTIME/defaults.vim
 
 " Disable annoying defaults

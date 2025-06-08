@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Usage: smartlaunch <class_name> <executable> [args...]
+CLASS_NAME="$1"
+APP_PATH="$2"
+shift 2
+APP_ARGS=("$@")
+
+# Get the currently focused window's address
+FOCUSED_ADDR=$(hyprctl activewindow -j | jq -r '.address')
+echo "focused: $FOCUSED_ADDR"
+
+# Find a matching window (not currently focused)
+MATCH_ADDR=$(hyprctl clients -j | jq -r --arg app "$CLASS_NAME" --arg focused "$FOCUSED_ADDR" '
+  limit(1;
+    .[] 
+    | select(.address != $focused) 
+    | select(.class == $app) 
+    | .address 
+  )
+')
+echo "$MATCH_ADDR"
+
+if [[ -n "$MATCH_ADDR" ]]; then
+  # Found one — focus it
+  hyprctl dispatch focuswindow address:"$MATCH_ADDR"
+else
+  # No match (or we're already focused) — launch the app
+  exec "$APP_PATH" "${APP_ARGS[@]}"
+fi
+

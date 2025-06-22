@@ -21,13 +21,6 @@ ZSH_PROMPT_COLOR_PATH=214
 ZSH_PROMPT_COLOR_VIM_MODE_LEFT=246
 ZSH_PROMPT_COLOR_VIM_MODE_RIGHT=253
 
-MODE_INDICATOR_VIINS='>'
-MODE_INDICATOR_VICMD=':'
-MODE_INDICATOR_REPLACE='R'
-MODE_INDICATOR_SEARCH='/'
-MODE_INDICATOR_VISUAL='v'
-MODE_INDICATOR_VLINE='V'
-
 USER_PROMPTS=
 USER_RPROMPTS=
 export USER_PROMPTS
@@ -51,6 +44,11 @@ prompt_print_user_prompts() {
     eval "echo -ne \"${USER_PROMPTS}\""
 }
 
+prompt_print_user_rprompts() {
+    # we wanna expand twice
+    eval "echo -ne \"${USER_RPROMPTS}\""
+}
+
 setopt PROMPT_SUBST
 
 TMOUT=10
@@ -65,6 +63,5 @@ prompt_add '$(prompt_color ${ZSH_PROMPT_COLOR_PATH} "%~")'
 
 PROMPT='%{%k%}'
 PROMPT+='$(prompt_print_user_prompts)'
-#PROMPT+='$(prompt_color ${ZSH_PROMPT_COLOR_VIM_MODE_LEFT} "${MODE_INDICATOR_PROMPT} ")'
 PROMPT+='%{%f%k%b%}'
-
+RPROMPT='$(prompt_print_user_rprompts)'

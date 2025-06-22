@@ -6,5 +6,6 @@ setopt inc_append_history
 setopt share_history
 HISTSIZE=100000
 HISTFILE="${XDG_CACHE_HOME}/zsh/history"
+mkdir -p "$(dirname ${HISTFILE})"
 SAVEHIST=100000
 

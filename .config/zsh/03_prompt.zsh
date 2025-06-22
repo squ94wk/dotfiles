@@ -51,9 +51,9 @@ prompt_print_user_rprompts() {
 
 setopt PROMPT_SUBST
 
-TMOUT=10
+TMOUT=5
 TRAPALRM () {
-    if pidof fzf >/dev/null; then
+    if pgrep fzf >/dev/null; then
         return;
     fi
     zle reset-prompt

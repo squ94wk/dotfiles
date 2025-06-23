@@ -17,6 +17,4 @@ function git_prompt_info() {
   fi
 }
 
-ZSH_PROMPT_COLOR_GIT=246
-
-prompt_add '$(prompt_color ${ZSH_PROMPT_COLOR_GIT} "$(git_prompt_info)")'
+prompt_add '$(prompt_color ${ZSH_COLOR_NEUTRAL} "$(git_prompt_info)")'

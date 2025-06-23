@@ -30,6 +30,9 @@ zstyle ':completion:*' menu select
 autoload -U compinit && compinit
 
 # Customization
+for file in ${XDG_CONFIG_HOME}/zsh/lib/*.zsh; do
+	source "$file"
+done
 for file in ${XDG_CONFIG_HOME}/zsh/*.zsh; do
 	source "$file"
 done

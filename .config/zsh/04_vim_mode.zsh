@@ -4,8 +4,6 @@ MODE_INDICATOR_REPLACE='R'
 MODE_INDICATOR_SEARCH='/'
 MODE_INDICATOR_VISUAL='v'
 MODE_INDICATOR_VLINE='V'
-# without this, the indicator is not displayed initially
-MODE_INDICATOR_PROMPT="$MODE_INDICATOR_VIINS"
 
 # Autocomplete shortcuts
 bindkey -M viins '^P' history-beginning-search-backward-end
@@ -21,3 +19,8 @@ MODE_CURSOR_VICMD="green block"
 MODE_CURSOR_SEARCH="#ff00ff steady underline"
 MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
+
+# without this, the indicator is not displayed initially
+MODE_INDICATOR_PROMPT="$MODE_INDICATOR_VIINS"
+
+prompt_add newline '$(prompt_color ${ZSH_COLOR_NEUTRAL} "${MODE_INDICATOR_PROMPT} ")'

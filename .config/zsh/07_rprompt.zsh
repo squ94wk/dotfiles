@@ -1,37 +1,44 @@
-function record_cmd_exec() {
+function record_cmd_start() {
     cmd_start_time=$SECONDS
 }
 
-add-zsh-hook preexec record_cmd_exec
-
-function prompt_cmd_duration() {
-    if [[ $? -eq 0 ]]; then
-        CMD_TIME_COLOR="%F{green}"
-    else
-        CMD_TIME_COLOR="%F{red}"
-    fi
-
+function record_cmd_end() {
+    cmd_code=$?
     if ! [ $cmd_start_time ]; then
+        unset cmd_time
+        unset cmd_code
         return
     fi
-    local cmd_end_time=$SECONDS
-    local cmd_time=$((cmd_end_time - cmd_start_time))
+    cmd_time=$((SECONDS - cmd_start_time))
     unset cmd_start_time
+}
 
-    # Format the time to show appropriate units
-    if [[ $cmd_time -ge 60 ]]; then
-        local mins=$((cmd_time / 60))
-        local secs=$((cmd_time % 60))
+add-zsh-hook preexec record_cmd_start
+add-zsh-hook precmd record_cmd_end
+
+function prompt_cmd_duration() {
+    if ! [ $cmd_time ]; then
+        return
+    fi
+
+    local hours=$((cmd_time / 60 / 60))
+    local mins=$((cmd_time / 60))
+    local secs=$((cmd_time % 60))
+
+    if [[ $cmd_time -ge $(( 60 * 60 )) ]]; then
+        cmd_time_str="${hours}h${mins}m"
+    elif [[ $cmd_time -ge 60 ]]; then
         cmd_time_str="${mins}m${secs}s"
     else
         cmd_time_str="${cmd_time}s"
     fi
 
-    # Store the formatted time for RPROMPT
-    echo "${CMD_TIME_COLOR}${cmd_time_str}%f"
+    if [[ $cmd_code -eq 0 ]]; then
+        echo "%F{green}${cmd_time_str}%f"
+    else
+        echo "%F{red}${cmd_time_str} ($cmd_code)%f"
+    fi
 }
 
-ZSH_PROMPT_COLOR_NEUTRAL=246
-
-prompt_add right '$(prompt_color ${ZSH_PROMPT_COLOR_NEUTRAL} "$(prompt_cmd_duration)")'
+prompt_add right '$(prompt_cmd_duration)'
 prompt_add right '%F{blue}%D{%I:%M:%S%p}%f'

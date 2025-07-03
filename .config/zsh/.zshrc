@@ -1,5 +1,9 @@
 [[ -f "$HOME/.bash_profile" ]] && . "$HOME/.bash_profile"
 
+update() {
+    exec env UPDATE=true $(which zsh)
+}
+
 if [[ "$UPDATE" == "true" ]]; then
     sudo curl -fsSL "https://gist.github.com/squ94wk/23bda001326aa185de26d2a6b850a180/raw/b728181453aa698a7b646272c435c3bde71b8ce9/ensure_repo.sh" -o "/usr/local/bin/ensure_repo.sh" && sudo chmod +x "/usr/local/bin/ensure_repo.sh"
     sudo curl -fsSL "https://gist.githubusercontent.com/squ94wk/23bda001326aa185de26d2a6b850a180/raw/de3d2dd65470d7abcce580f92f12838e1f074025/install_from_archive.sh" -o "/usr/local/bin/install_from_archive.sh" && sudo chmod +x "/usr/local/bin/install_from_archive.sh"

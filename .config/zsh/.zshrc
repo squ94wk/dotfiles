@@ -21,12 +21,17 @@ source "${ZSH_PLUGIN_DIR}/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 source "${ZSH_PLUGIN_DIR}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 source "${ZSH_PLUGIN_DIR}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
+bindkey '^[[C' forward-word
 source "${ZSH_PLUGIN_DIR}/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
 bindkey '^I' fzf_completion
 source "${ZSH_PLUGIN_DIR}/zsh-fzf-history-search/zsh-fzf-history-search.zsh"
 
 # init completion
-zstyle ':completion:*' menu select
+completion_dir="${XDG_CACHE_HOME}/zsh/completions"
+fpath=("$completion_dir" $fpath)
+
+mkdir -p "$completion_dir"
+# fistyle ':completion:*' menu select
 autoload -U compinit && compinit
 
 # Customization

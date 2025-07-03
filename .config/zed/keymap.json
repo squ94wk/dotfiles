@@ -17,5 +17,12 @@
       "g t": "terminal_panel::ToggleFocus",
       "g p": "file_finder::Toggle"
     }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
+    }
   }
 ]

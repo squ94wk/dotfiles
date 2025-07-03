@@ -1,0 +1,21 @@
+{
+	"customManagers": [
+	  {
+	    "customType": "regex",
+	    "fileMatch": ["^.+/.local/bin/install_software_.+$"],
+	    "matchStrings": [
+	      "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\n(?<key>[a-z_]+)=(?<currentValue>.+)"
+	    ],
+	    "datasourceTemplate": "{{datasource}}",
+	    "depNameTemplate": "{{depName}}",
+	    "versioningTemplate": "semver"
+	  }
+	],
+	"branchConcurrentLimit": 1,
+	"packageRules": [
+	   {
+	   	"matchDatasources": ["*"],
+	   	"groupName": "update-deps"
+	   }
+	]
+}

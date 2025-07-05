@@ -2,7 +2,7 @@
 	"customManagers": [
 	  {
 	    "customType": "regex",
-	    "fileMatch": ["^.+/.local/bin/install_software_.+$"],
+	    "fileMatch": ["^.+/.local/bin/install_software.sh$"],
 	    "matchStrings": [
 	      "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\n(?<key>[a-z_]+)=(?<currentValue>.+)"
 	    ],

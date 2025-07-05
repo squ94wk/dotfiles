@@ -1,6 +1,6 @@
 function kube_prompt_info() {
   local current_context
-  if ! current_context=$(kubectl config current-context); then
+  if ! current_context=$(kubectl config current-context 2>/dev/null); then
     return
   fi
 

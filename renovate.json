@@ -2,9 +2,9 @@
 	"customManagers": [
 	  {
 	    "customType": "regex",
-	    "fileMatch": ["^.+/.local/bin/install_software.sh$"],
+	    "fileMatch": ["^.+/\\.local/bin/install_software\\.sh$"],
 	    "matchStrings": [
-	      "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\n(?<key>[a-z_]+)=(?<currentValue>.+)"
+	      "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\n(?<key>[a-zA-Z_]+)=\"(?<currentValue>.+)\""
 	    ],
 	    "datasourceTemplate": "{{datasource}}",
 	    "depNameTemplate": "{{depName}}",

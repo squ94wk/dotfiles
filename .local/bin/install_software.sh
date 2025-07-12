@@ -17,7 +17,10 @@ install_from_url() {
 }
 
 # renovate: datasource=golang-version
-GO_VERSION="1.22.3"
+GO_VERSION="1.24.5"
+# renovate: datasource=github-releases depName=golangci/golangci-lint
+GOLANGCI_LINT_VERSION="2.2.1"
+
 # renovate: datasource=github-releases depName=kubernetes/kubectl
 KUBECTL_VERSION="1.33.2"
 # renovate: datasource=github-releases depName=helm/helm
@@ -42,6 +45,18 @@ install_go() {
         install_from_archive.sh "https://go.dev/dl/go${version}.${GOOS}-${GOARCH}.tar.gz" "go" "$dest"
     fi
     ln -sfn "$dest" "$(dirname "$dest")/go"
+}
+
+install_golangci_lint() {
+    local version="${1:-$GOLANGCI_LINT_VERSION}"
+    local dest="/usr/local/bin/golangci-lint-${version}"
+    if ! [ -f "$dest" ]; then
+        echo "# Installing golangci-lint $version"
+        local archive_dir="golangci-lint-${version}-${GOOS}-${GOARCH}"
+        install_from_archive.sh "https://github.com/golangci/golangci-lint/releases/download/v${version}/${archive_dir}.tar.gz" "${archive_dir}/golangci-lint" "$dest"
+        chmod +x "$dest"
+    fi
+    ln -sfn "$dest" "/usr/local/bin/golangci-lint"
 }
 
 install_kubectl() {
@@ -131,6 +146,7 @@ install_k9s() {
 
 if [ $# -eq 0 ]; then
     install_go
+    install_golangci_lint
     install_kubectl
     install_helm
     install_kind
@@ -141,6 +157,7 @@ if [ $# -eq 0 ]; then
 elif [ $# -le 2 ]; then
     case "$1" in
         "go") install_go "$2" ;;
+        "golangci-lint") install_golangci_lint "$2" ;;
         "kubectl") install_kubectl "$2" ;;
         "helm") install_helm "$2" ;;
         "kind") install_kind "$2" ;;

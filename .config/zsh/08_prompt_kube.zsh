@@ -12,4 +12,4 @@ function kube_prompt_info() {
   fi
 }
 
-prompt_add '$(prompt_color ${ZSH_COLOR_SECONDARY} "$(kube_prompt_info)")'
+prompt_funcs+=(kube_prompt_info)

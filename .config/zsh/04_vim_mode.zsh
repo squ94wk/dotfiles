@@ -23,4 +23,9 @@ MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 # without this, the indicator is not displayed initially
 MODE_INDICATOR_PROMPT="$MODE_INDICATOR_VIINS"
 
-prompt_add newline '$(prompt_color ${ZSH_COLOR_NEUTRAL} "${MODE_INDICATOR_PROMPT} ")'
+prompt_vim_mode() {
+    PROMPT+="
+$(prompt_color ${ZSH_COLOR_NEUTRAL} "${MODE_INDICATOR_PROMPT}")"
+}
+
+newline_prompt_funcs+=(prompt_vim_mode)

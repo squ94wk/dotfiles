@@ -13,8 +13,8 @@ function record_cmd_end() {
     unset cmd_start_time
 }
 
-add-zsh-hook preexec record_cmd_start
-add-zsh-hook precmd record_cmd_end
+precmd_functions=(record_cmd_end $precmd_functions)
+preexec_functions=(record_cmd_start $preexec_functions)
 
 function prompt_cmd_duration() {
     if ! [ $cmd_time ]; then
@@ -34,11 +34,15 @@ function prompt_cmd_duration() {
     fi
 
     if [[ $cmd_code -eq 0 ]]; then
-        echo "%F{green}${cmd_time_str}%f"
+        RPROMPT+="%F{green}${cmd_time_str}%f "
     else
-        echo "%F{red}${cmd_time_str} ($cmd_code)%f"
+        RPROMPT+="%F{red}${cmd_time_str} ($cmd_code)%f "
     fi
 }
 
-prompt_add right '$(prompt_cmd_duration)'
-prompt_add right '%F{blue}%D{%I:%M:%S%p}%f'
+function prompt_time() {
+    RPROMPT+="%F{blue}%D{%I:%M:%S%p}%f"
+}
+
+prompt_funcs+=(prompt_cmd_duration)
+prompt_funcs+=(prompt_time)

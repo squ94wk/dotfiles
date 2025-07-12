@@ -1,29 +1,23 @@
 # don't print '(venv)' when in virtual env
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-USER_PROMPTS=
-USER_PROMPTS_NEWLINE=
-USER_RPROMPTS=
-export USER_PROMPTS
-export USER_RPROMPTS
-export USER_PROMPTS_NEWLINE
-
-prompt_add() {
-    case $1 in
-        right)
-            USER_RPROMPTS+=" $2"
-            ;;
-        left)
-            USER_PROMPTS+=" $2"
-            ;;
-        newline)
-            USER_PROMPTS_NEWLINE+=" $2"
-            ;;
-        *)
-            USER_PROMPTS+=" $1"
-            ;;
-    esac
+prompt_funcs=()
+newline_prompt_funcs=()
+prompt_setup_prompts() {
+    { # prevent inderupts when prompt is "drawn"
+        trap '' INT
+        PROMPT=''
+        RPROMPT=''
+        for func in $prompt_funcs $newline_prompt_funcs; do
+            $func
+        done
+        PROMPT+=' '
+    } always {
+        trap - INT
+    }
 }
+
+add-zsh-hook precmd prompt_setup_prompts
 
 function prompt_bold() {
     printf "%%B%s%%b" "$@"
@@ -35,36 +29,15 @@ function prompt_color() {
     printf "%%F{$color}%s%%f" "$@"
 }
 
-prompt_print_user_prompts() {
-    # we wanna expand twice
-    case $1 in
-        right)
-            eval "echo -ne \"${USER_RPROMPTS}\""
-            ;;
-        left)
-            eval "echo -ne \"${USER_PROMPTS}\""
-            ;;
-        newline)
-            eval "echo -ne \"${USER_PROMPTS_NEWLINE}\""
-            ;;
-        *)
-            ;;
-    esac
+function _reset_prompt {
+    prompt_setup_prompts
+    zle .reset-prompt
 }
-
-setopt PROMPT_SUBST
+zle -N reset-prompt _reset_prompt
 
 TMOUT=5
 TRAPALRM () {
-    if pgrep fzf >/dev/null; then
-        return;
+    if [ "$WIDGET" != "fzf_completion" ]; then
+        zle reset-prompt
     fi
-    zle reset-prompt
 }
-
-PROMPT='%{%k%}'
-PROMPT+='$(prompt_print_user_prompts left)'
-PROMPT+='
-$(prompt_print_user_prompts newline)'
-PROMPT+='%{%f%k%b%}'
-RPROMPT='$(prompt_print_user_prompts right)'

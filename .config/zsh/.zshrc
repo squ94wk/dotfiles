@@ -65,7 +65,6 @@ completion_dir="${XDG_CACHE_HOME}/zsh/completions"
 fpath=("$completion_dir" $fpath)
 
 mkdir -p "$completion_dir"
-# fistyle ':completion:*' menu select
 autoload -U compinit && compinit
 
 # Customization

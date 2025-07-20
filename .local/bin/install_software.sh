@@ -37,6 +37,9 @@ DEVSPACE_VERSION="6.3.15"
 # renovate: datasource=github-releases depName=casey/just
 JUST_VERSION="1.41.0"
 
+# renovate: datasource=github-releases depName=nodejs/node
+NODE_VERSION="24.4.1"
+
 install_go() {
     local version="${1:-$GO_VERSION}"
     local dest="/usr/local/bin/go${version}"
@@ -144,6 +147,30 @@ install_k9s() {
     ln -sfn "$dest" "/usr/local/bin/k9s"
 }
 
+install_node() {
+    local version="${1:-$NODE_VERSION}"
+    local dest="/usr/local/bin/node-${version}"
+    if ! [ -f "$dest" ]; then
+        echo "# Installing Node.js $version"
+        local node_os
+        case "$(uname -s)" in
+          Darwin) node_os="darwin" ;;
+          Linux) node_os="linux" ;;
+          *) echo "Unsupported OS" >&2; exit 1 ;;
+        esac
+        local node_arch
+        case "$(uname -m)" in
+          x86_64) node_arch="x64" ;;
+          aarch64 | arm64) node_arch="arm64" ;;
+          *) echo "Unsupported architecture" >&2; exit 1 ;;
+        esac
+        local archive_dir="node-v${version}-${node_os}-${node_arch}"
+        install_from_archive.sh "https://nodejs.org/dist/v${version}/${archive_dir}.tar.gz" "${archive_dir}/bin/node" "$dest"
+        chmod +x "$dest"
+    fi
+    ln -sfn "$dest" "/usr/local/bin/node"
+}
+
 if [ $# -eq 0 ]; then
     install_go
     install_golangci_lint
@@ -154,6 +181,7 @@ if [ $# -eq 0 ]; then
     install_devspace
     install_just
     install_k9s
+    install_node
 elif [ $# -le 2 ]; then
     case "$1" in
         "go") install_go "$2" ;;
@@ -165,6 +193,7 @@ elif [ $# -le 2 ]; then
         "devspace") install_devspace "$2" ;;
         "just") install_just "$2" ;;
         "k9s") install_k9s "$2" ;;
+        "node") install_node "$2" ;;
         *) echo "Unknown tool: $1" >&2; exit 1 ;;
     esac
 else

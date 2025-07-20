@@ -37,7 +37,7 @@ zle -N reset-prompt _reset_prompt
 
 TMOUT=5
 TRAPALRM () {
-    if [ "$WIDGET" != "fzf_completion" ]; then
+    if [[ ! "$WIDGET" =~ ^fzf_.*$ ]]; then
         zle reset-prompt
     fi
 }

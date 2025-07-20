@@ -10,7 +10,12 @@
     ff = merge --ff-only
     fff = "!git f && git ff"
     ffff = "!git f -f && git ff"
-    fm = "!git fetch origin $(git config init.defaultBranch):$(git config init.defaultBranch)"
+    fm = "!f() { \
+      b=$(git config init.defaultBranch); \
+      u=$(git rev-parse --abbrev-ref --symbolic-full-name \"$b@{u}\" 2>/dev/null); \
+      git fetch \"${u%%/*}\" \"${u#*/}:$b\"; \
+    }; f"
+    ffm = "!git f && git fm"
 
     # Log in increasing detail
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short

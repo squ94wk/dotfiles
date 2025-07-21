@@ -1,0 +1,51 @@
+" Navigation
+nmap ge <Action>(RecentFiles)
+nmap gp <Action>(GotoFile)
+nmap gf <Action>(ActivateProjectToolWindow)
+nmap g/ <Action>(FindInPath)
+xmap g/ <Action>(FindInPath)
+nmap gt <Action>(ActivateTerminalToolWindow)
+
+" nmap gS <Action>(GotoSymbol)
+" nmap gs <Action>(FileStructurePopup)
+
+" Git
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap do <Action>(Vcs.ShowDiffChangedLines)
+nmap du <Action>(Git.Add)
+" not supported in intellij
+" nmap dO <Action>(ChangesView.ToggleChange)
+" nmap dU <Action>(Git.Reset)
+nmap dp <Action>(Vcs.RollbackChangedLines)
+
+" Edit
+nmap gd <Action>(GotoDeclaration)
+nmap gy <Action>(GotoTypeDeclaration)
+nmap gI <Action>(GotoImplementation)
+nmap cd <Action>(RenameElement)
+nmap gA <Action>(FindUsages)
+nmap gs <Action>(FileStructurePopup)
+
+nmap g. <Action>(ShowIntentionActions)
+nmap gc <Action>(CommentByLineComment)
+xmap gc <Action>(CommentByLineComment)
+
+nmap ]] <Action>(MethodDown)
+nmap [[ <Action>(MethodUp)
+
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+
+" selection up
+nmap g<UP> <Action>(EditorSelectWord)
+xmap g<UP> <Action>(EditorSelectWord)
+" multi cursor
+nmap gl <Action>(SelectNextOccurrence)
+xmap gl <Action>(SelectNextOccurrence)
+
+" Vim basics
+" set clipboard=unnamed
+set ignorecase
+set smartcase
+set incsearch

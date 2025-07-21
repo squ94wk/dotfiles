@@ -34,14 +34,14 @@ function prompt_cmd_duration() {
     fi
 
     if [[ $cmd_code -eq 0 ]]; then
-        RPROMPT+="%F{green}${cmd_time_str}%f "
+        RPROMPT+="$(style "${cmd_time_str} " color "${prompt_colors[green_1]}")"
     else
-        RPROMPT+="%F{red}${cmd_time_str} ($cmd_code)%f "
+        RPROMPT+="$(style "${cmd_time_str} ($cmd_code) " color "${prompt_colors[red_1]}")"
     fi
 }
 
 function prompt_time() {
-    RPROMPT+="%F{blue}%D{%I:%M:%S%p}%f"
+    RPROMPT+="$(style "%D{%I:%M:%S%p}" color "${prompt_colors[blue_1]}")"
 }
 
 prompt_funcs+=(prompt_cmd_duration)

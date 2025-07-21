@@ -23,11 +23,6 @@ function prompt_bold() {
     printf "%%B%s%%b" "$@"
 }
 
-function prompt_color() {
-    local color="$1"
-    shift
-    printf "%%F{$color}%s%%f" "$@"
-}
 
 function _reset_prompt {
     prompt_setup_prompts

@@ -1,5 +1,3 @@
-vcluster_color=202
-kind_color=68
 format_context() {
   local ctx=$1
   local result=""
@@ -10,12 +8,12 @@ format_context() {
     namespace=$match[2]
     rest=$match[3]
 
-    result=" $(prompt_color "$vcluster_color" "⟨v:")${name}${result}$(prompt_color "$vcluster_color" "⟩")"
+    result=" $(style "⟨v:" color "${prompt_colors[vcluster]}")$(style "${name}${result}" color "${prompt_colors[white_2]}")$(style "⟩" color "${prompt_colors[vcluster]}")"
     ctx=$rest
   done
 
   if [[ "$ctx" == kind-* ]]; then
-    result=" $(prompt_color "$kind_color" "⟨kind:")${ctx#kind-}${result}$(prompt_color "$kind_color" "⟩")"
+    result=" $(style "⟨kind:" color "${prompt_colors[kind]}")$(style "${ctx#kind-}${result}" color "${prompt_colors[white_2]}")$(style "⟩" color "${prompt_colors[kind]}")"
   fi
 
   print -r -- "${result}"

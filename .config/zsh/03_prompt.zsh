@@ -1,4 +1,4 @@
 prompt_dir() {
-    PROMPT+=$(prompt_color ${ZSH_COLOR_PRIMARY} "%~")
+    PROMPT+=$(style "%~" color ${prompt_colors[yellow_1]})
 }
 prompt_funcs+=(prompt_dir)

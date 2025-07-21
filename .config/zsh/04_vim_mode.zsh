@@ -24,8 +24,8 @@ MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 MODE_INDICATOR_PROMPT="$MODE_INDICATOR_VIINS"
 
 prompt_vim_mode() {
-    PROMPT+="
-$(prompt_color ${ZSH_COLOR_NEUTRAL} "${MODE_INDICATOR_PROMPT}")"
+    PROMPT+="$(style "
+${MODE_INDICATOR_PROMPT}" color "${prompt_colors[white_1]}")"
 }
 
 newline_prompt_funcs+=(prompt_vim_mode)

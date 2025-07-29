@@ -30,6 +30,9 @@ KIND_VERSION="0.29.0"
 # renovate: datasource=github-releases depName=derailed/k9s
 K9S_VERSION="0.50.6"
 
+# renovate: datasource=github-releases depName=hashicorp/terraform
+TERRAFORM_VERSION="1.12.2"
+
 # renovate: datasource=github-releases depName=loft-sh/vcluster
 VCLUSTER_VERSION="0.26.0"
 # renovate: datasource=github-releases depName=devspace-sh/devspace
@@ -147,6 +150,18 @@ install_k9s() {
     ln -sfn "$dest" "/usr/local/bin/k9s"
 }
 
+install_terraform() {
+    local version="${1:-$TERRAFORM_VERSION}"
+    local dest="/usr/local/bin/terraform-${version}"
+    if ! [ -f "$dest" ]; then
+        echo "# Installing Terraform $version"
+        local archive_name="terraform_${version}_${GOOS}_${GOARCH}.zip"
+        install_from_archive.sh "https://releases.hashicorp.com/terraform/${version}/${archive_name}" "terraform" "$dest"
+        chmod +x "$dest"
+    fi
+    ln -sfn "$dest" "/usr/local/bin/terraform"
+}
+
 install_node() {
     local version="${1:-$NODE_VERSION}"
     local dest="/usr/local/bin/node-${version}"
@@ -181,6 +196,7 @@ if [ $# -eq 0 ]; then
     install_devspace
     install_just
     install_k9s
+    install_terraform
     install_node
 elif [ $# -le 2 ]; then
     case "$1" in
@@ -193,6 +209,7 @@ elif [ $# -le 2 ]; then
         "devspace") install_devspace "$2" ;;
         "just") install_just "$2" ;;
         "k9s") install_k9s "$2" ;;
+        "terraform") install_terraform "$2" ;;
         "node") install_node "$2" ;;
         *) echo "Unknown tool: $1" >&2; exit 1 ;;
     esac

@@ -26,6 +26,8 @@ nmap gI <Action>(GotoImplementation)
 nmap cd <Action>(RenameElement)
 nmap gA <Action>(FindUsages)
 nmap gs <Action>(FileStructurePopup)
+imap <C-N> <Action>(HippieCompletion)
+imap <C-P> <Action>(HippieBackwardCompletion)
 
 nmap g. <Action>(ShowIntentionActions)
 nmap gc <Action>(CommentByLineComment)

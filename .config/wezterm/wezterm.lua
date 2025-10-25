@@ -2,7 +2,12 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
-config.default_prog = { '/opt/homebrew/bin/zsh', '-c', '/opt/homebrew/bin/tmux a -t 1 || /opt/homebrew/bin/tmux' }
+-- config.default_prog = { '/opt/homebrew/bin/zsh', '-c', '/opt/homebrew/bin/tmux a -t 1 || /opt/homebrew/bin/tmux' }
+config.default_prog = {
+  '/opt/homebrew/bin/zsh',
+  '-c',
+  'pgrep tmux >/dev/null && exec /opt/homebrew/bin/zsh || exec /opt/homebrew/bin/tmux new -s work'
+}
 
 config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 16

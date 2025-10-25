@@ -13,4 +13,7 @@ if [[ "$UPDATE" == "true" ]]; then
     fi
 fi
 
+export KREW_ROOT="$HOME/.krew"
+path+=("${KREW_ROOT}/bin")
+
 compdef _kubectl k

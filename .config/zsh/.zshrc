@@ -44,6 +44,7 @@ autosuggest_partial_wordwise () {
           $CURSOR -lt $((${#BUFFER} - 1)) ]]; then
         zle forward-char
     else
+        local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
         zle forward-word
     fi
 }
@@ -88,3 +89,9 @@ if [[ "$UPDATE" == "true" ]]; then
 fi
 
 unset UPDATE
+
+# allow bash style comments in interactive shell
+setopt interactivecomments
+
+# Stop word deletion at slashes, dots, hyphens, underscores, colons, @, and =
+WORDCHARS=${WORDCHARS//[\/.-_:@=]}

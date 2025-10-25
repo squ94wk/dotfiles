@@ -18,8 +18,5 @@ set completeopt=longest,menuone
 set wildmode=longest,list
 
 " always enable autoindenting
-set tabstop=4
-set shiftwidth=4
-set autoindent
-set expandtab
-set smartindent
+
+set noswapfile

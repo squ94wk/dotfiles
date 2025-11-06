@@ -19,11 +19,13 @@ if [[ "$UPDATE" == "true" ]]; then
     ensure_repo.sh "https://github.com/zsh-users/zsh-autosuggestions" "${ZSH_PLUGIN_DIR}/zsh-autosuggestions"
     ensure_repo.sh "https://github.com/lincheney/fzf-tab-completion.git" "${ZSH_PLUGIN_DIR}/fzf-tab-completion"
     ensure_repo.sh "https://github.com/joshskidmore/zsh-fzf-history-search.git" "${ZSH_PLUGIN_DIR}/zsh-fzf-history-search"
+    ensure_repo.sh "https://github.com/mafredri/zsh-async.git" "${ZSH_PLUGIN_DIR}/zsh-async"
 fi
 
 source "${ZSH_PLUGIN_DIR}/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 source "${ZSH_PLUGIN_DIR}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 source "${ZSH_PLUGIN_DIR}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+source "${ZSH_PLUGIN_DIR}/zsh-async/async.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 #####

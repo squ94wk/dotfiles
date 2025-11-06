@@ -1,3 +1,5 @@
+typeset -g PROMPT_CMD_DURATION=""
+
 function record_cmd_start() {
     cmd_start_time=$SECONDS
 }
@@ -7,19 +9,11 @@ function record_cmd_end() {
     if ! [ $cmd_start_time ]; then
         unset cmd_time
         unset cmd_code
+        PROMPT_CMD_DURATION=""
         return
     fi
     cmd_time=$((SECONDS - cmd_start_time))
     unset cmd_start_time
-}
-
-precmd_functions=(record_cmd_end $precmd_functions)
-preexec_functions=(record_cmd_start $preexec_functions)
-
-function prompt_cmd_duration() {
-    if ! [ $cmd_time ]; then
-        return
-    fi
 
     local hours=$((cmd_time / 60 / 60))
     local mins=$((cmd_time / 60))
@@ -34,15 +28,14 @@ function prompt_cmd_duration() {
     fi
 
     if [[ $cmd_code -eq 0 ]]; then
-        RPROMPT+="$(style "${cmd_time_str} " color "${prompt_colors[green_1]}")"
+        PROMPT_CMD_DURATION="$(style "${cmd_time_str} " color "${prompt_colors[green_1]}")"
     else
-        RPROMPT+="$(style "${cmd_time_str} ($cmd_code) " color "${prompt_colors[red_1]}")"
+        PROMPT_CMD_DURATION="$(style "${cmd_time_str} ($cmd_code) " color "${prompt_colors[red_1]}")"
     fi
 }
 
-function prompt_time() {
-    RPROMPT+="$(style "%D{%I:%M:%S%p}" color "${prompt_colors[blue_1]}")"
-}
+precmd_functions=(record_cmd_end $precmd_functions)
+preexec_functions=(record_cmd_start $preexec_functions)
 
-prompt_funcs+=(prompt_cmd_duration)
-prompt_funcs+=(prompt_time)
+# Build RPROMPT using variable expansion
+RPROMPT='${PROMPT_CMD_DURATION}$(style "%D{%I:%M:%S%p}" color "${prompt_colors[blue_1]}")'

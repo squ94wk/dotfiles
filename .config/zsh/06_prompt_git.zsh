@@ -17,14 +17,14 @@ _prompt_git_job() {
     result+=" $(style "dotfiles:" color "${prompt_colors[white_1]}")"
   fi
 
-  # Get branch name
+  # Get branch name using plumbing commands
   local ref
-  ref=$(git symbolic-ref HEAD 2>/dev/null) || \
+  ref=$(git symbolic-ref --short HEAD 2>/dev/null) || \
   ref=$(git rev-parse --short HEAD 2>/dev/null) || return 1
-  result+="$(style "${ref#refs/heads/}" color "${prompt_colors[white_1]}" bold)"
+  result+="$(style "$ref" color "${prompt_colors[white_1]}" bold)"
 
-  # Check for changes
-  if git status | grep -E '^[MDAR]' &>/dev/null; then
+  # Check for changes using plumbing command (both staged and unstaged)
+  if ! git diff-index --quiet HEAD -- 2>/dev/null; then
     result+="+"
   fi
 

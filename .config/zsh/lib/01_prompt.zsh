@@ -21,7 +21,8 @@ typeset -g PROMPT_CLEANUP_NEEDED=0
 
 function _is_tmux_pane_visible() {
   [[ -z "$TMUX" ]] && return 0
-  [[ "$(tmux display-message -p '#{window_active}#{pane_active}')" == "11" ]]
+  local state="$(tmux display-message -p '#{window_active}#{window_zoomed_flag}#{pane_active}')"
+  [[ "$state" == "111" || "$state" == "101" || "$state" == "100" ]]
 }
 
 # Initialize async system

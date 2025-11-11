@@ -1,16 +1,12 @@
 # History
-setopt hist_ignore_space
-setopt hist_ignore_dups
-setopt hist_verify
-setopt inc_append_history
-setopt share_history
-HISTSIZE=100000
+setopt HIST_VERIFY # Whenever the user enters a line with history expansion, don’t execute the line directly; instead, perform history expansion and reload the line into the editing buffer.
+
+HISTSIZE=10000
 HISTFILE="${XDG_CACHE_HOME}/zsh/history"
 mkdir -p "$(dirname ${HISTFILE})"
 SAVEHIST=90000
 
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.

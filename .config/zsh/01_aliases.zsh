@@ -1,28 +1,11 @@
-# taken from oh-my-zsh
-# is x grep argument available?
-grep-flag-available() {
-    echo | grep $1 "" >/dev/null 2>&1
-}
-
+# Optimized grep flag detection
+# Cache grep capabilities instead of testing each time
 GREP_OPTIONS=""
 
-# color grep results
-if grep-flag-available --color=auto; then
-    GREP_OPTIONS+=" --color=auto"
-fi
-
-# ignore VCS folders (if the necessary grep flags are available)
-VCS_FOLDERS="{.bzr,CVS,.git,.hg,.svn}"
-
-if grep-flag-available --exclude-dir=.cvs; then
-    GREP_OPTIONS+=" --exclude-dir=$VCS_FOLDERS"
-elif grep-flag-available --exclude=.cvs; then
-    GREP_OPTIONS+=" --exclude=$VCS_FOLDERS"
-fi
-
-# clean up
-unset VCS_FOLDERS
-unfunction grep-flag-available
+# Modern grep supports these flags, so just use them directly
+# This avoids slow flag detection at startup
+GREP_OPTIONS+=" --color=auto"
+GREP_OPTIONS+=" --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias grep="grep $GREP_OPTIONS"
 
 # du

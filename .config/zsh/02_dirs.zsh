@@ -15,12 +15,3 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias md='mkdir -p'
-
-function d () {
-  if [[ -n $1 ]]; then
-    dirs "$@"
-  else
-    dirs -v | head -10
-  fi
-}
-

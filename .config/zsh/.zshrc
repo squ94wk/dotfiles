@@ -15,7 +15,7 @@ ZSH_PLUGIN_DIR="${XDG_CONFIG_HOME}/zsh/plugins"
 # Plugins
 if [[ "$UPDATE" == "true" ]]; then
     ensure_repo.sh "https://github.com/softmoth/zsh-vim-mode.git" "${ZSH_PLUGIN_DIR}/zsh-vim-mode"
-    ensure_repo.sh "https://github.com/zdharma-continuum/fast-syntax-highlighting.git" "${ZSH_PLUGIN_DIR}/fast-syntax-highlighting"
+    ensure_repo.sh "https://github.com/zsh-users/zsh-syntax-highlighting.git" "${ZSH_PLUGIN_DIR}/zsh-syntax-highlighting"
     ensure_repo.sh "https://github.com/zsh-users/zsh-autosuggestions" "${ZSH_PLUGIN_DIR}/zsh-autosuggestions"
     ensure_repo.sh "https://github.com/lincheney/fzf-tab-completion.git" "${ZSH_PLUGIN_DIR}/fzf-tab-completion"
     ensure_repo.sh "https://github.com/joshskidmore/zsh-fzf-history-search.git" "${ZSH_PLUGIN_DIR}/zsh-fzf-history-search"
@@ -23,7 +23,8 @@ if [[ "$UPDATE" == "true" ]]; then
 fi
 
 source "${ZSH_PLUGIN_DIR}/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
-source "${ZSH_PLUGIN_DIR}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "${ZSH_PLUGIN_DIR}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 source "${ZSH_PLUGIN_DIR}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "${ZSH_PLUGIN_DIR}/zsh-async/async.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history)

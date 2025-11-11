@@ -69,7 +69,15 @@ completion_dir="${XDG_CACHE_HOME}/zsh/completions"
 fpath=("$completion_dir" $fpath)
 
 mkdir -p "$completion_dir"
-autoload -U compinit && compinit
+
+# Only regenerate completion dump once per day
+autoload -U compinit
+zcompdump="${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"
+if [[ -n ${zcompdump}(#qN.mh+24) ]]; then
+  compinit -d "$zcompdump"
+else
+  compinit -C -d "$zcompdump"
+fi
 
 # Customization
 for file in ${XDG_CONFIG_HOME}/zsh/lib/*.zsh; do

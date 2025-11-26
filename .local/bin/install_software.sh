@@ -19,37 +19,39 @@ install_from_url() {
 # renovate: datasource=golang-version
 GO_VERSION="1.25.1"
 # renovate: datasource=github-releases depName=golangci/golangci-lint
-GOLANGCI_LINT_VERSION="2.5.0"
+GOLANGCI_LINT_VERSION="2.6.2"
 
 # renovate: datasource=github-releases depName=kubernetes/kubectl
 KUBECTL_VERSION="1.34.1"
 # renovate: datasource=github-releases depName=helm/helm
-HELM_VERSION="3.18.6"
+HELM_VERSION="4.0.0"
 # renovate: datasource=github-releases depName=kubernetes-sigs/kind
 KIND_VERSION="0.30.0"
 # renovate: datasource=github-releases depName=derailed/k9s
-K9S_VERSION="0.50.12"
+K9S_VERSION="0.50.16"
 
 # renovate: datasource=github-releases depName=hashicorp/terraform
-TERRAFORM_VERSION="1.13.1"
+TERRAFORM_VERSION="1.14.0"
 
 # renovate: datasource=github-releases depName=loft-sh/vcluster
-VCLUSTER_VERSION="0.29.0"
+VCLUSTER_VERSION="0.31.0-alpha.0"
 # renovate: datasource=github-releases depName=devspace-sh/devspace
 DEVSPACE_VERSION="6.3.18"
 # renovate: datasource=github-releases depName=casey/just
 JUST_VERSION="1.43.0"
 
 # renovate: datasource=github-releases depName=nodejs/node
-NODE_VERSION="24.9.0"
+NODE_VERSION="25.2.0"
 # renovate: datasource=github-releases depName=argoproj/argo-cd
-ARGOCD_VERSION="3.1.8"
+ARGOCD_VERSION="3.2.0"
 # renovate: datasource=github-releases depName=kubeovn/kube-ovn
 KUBEOVN_VERSION="1.14.10"
 # renovate: datasource=github-releases depName=cilium/cilium-cli
 CILIUM_VERSION="0.18.7"
 # renovate: datasource=github-releases depName=kube-burner/kube-burner
-KUBE_BURNER_VERSION="1.17.6"
+KUBE_BURNER_VERSION="1.17.7"
+# renovate: datasource=github-releases depName=lework/skopeo-binary
+SKOPEO_VERSION="1.20.0"
 
 install_go() {
     local version="${1:-$GO_VERSION}"
@@ -260,6 +262,16 @@ install_kube_burner() {
     ln -sfn "${dest}-${version}" "$dest"
 }
 
+install_skopeo() {
+    local version="${1:-$SKOPEO_VERSION}"
+    local dest="/usr/local/bin/skopeo"
+    if ! [ -f "${dest}-${version}" ]; then
+        echo "# Installing skopeo $version"
+        install_from_url "https://github.com/lework/skopeo-binary/releases/download/v${version}/skopeo-${GOOS}-${GOARCH}" "${dest}-${version}"
+    fi
+    ln -sfn "${dest}-${version}" "$dest"
+}
+
 if [ $# -eq 0 ]; then
     install_go
     install_golangci_lint
@@ -276,6 +288,7 @@ if [ $# -eq 0 ]; then
     install_ko
     install_cilium
     install_kube_burner
+    install_skopeo
 elif [ $# -le 2 ]; then
     case "$1" in
         "go") install_go "$2" ;;
@@ -293,6 +306,7 @@ elif [ $# -le 2 ]; then
         "ko") install_ko "$2" ;;
         "cilium") install_cilium "$2" ;;
         "kube-burner") install_kube_burner "$2" ;;
+        "skopeo") install_skopeo "$2" ;;
         *) echo "Unknown tool: $1" >&2; exit 1 ;;
     esac
 else

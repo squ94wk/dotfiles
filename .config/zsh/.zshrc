@@ -62,6 +62,7 @@ ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(autosuggest_partial_wordwise)
 
 source "${ZSH_PLUGIN_DIR}/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
 bindkey '^I' fzf_completion
+export ZSH_FZF_HISTORY_SEARCH_DATES_IN_SEARCH=0
 source "${ZSH_PLUGIN_DIR}/zsh-fzf-history-search/zsh-fzf-history-search.zsh"
 
 # init completion

@@ -60,3 +60,18 @@ zshexit() {
 function prompt_bold() {
     printf "%%B%s%%b" "$@"
 }
+
+function prompt_padding() {
+    local left="$1"
+    local right="$2"
+
+    # Strip prompt escape sequences to get visible length
+    local left_len=${#${(S%%)left//(\%([KF1]|)\{*\}|\%[Bbkf])}}
+    local right_len=${#${(S%%)right//(\%([KF1]|)\{*\}|\%[Bbkf])}}
+
+    local padding=$((COLUMNS - left_len - right_len))
+
+    if [[ $padding -gt 0 ]]; then
+        printf "%${padding}s" ""
+    fi
+}

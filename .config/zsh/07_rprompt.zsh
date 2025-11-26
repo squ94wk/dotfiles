@@ -37,5 +37,5 @@ function record_cmd_end() {
 precmd_functions=(record_cmd_end $precmd_functions)
 preexec_functions=(record_cmd_start $preexec_functions)
 
-# Build RPROMPT using variable expansion
-RPROMPT='${PROMPT_CMD_DURATION}$(style "%D{%I:%M:%S%p}" color "${prompt_colors[blue_1]}")'
+# Build RPROMPT using variable expansion (moved to PROMPT first line)
+RPROMPT=''

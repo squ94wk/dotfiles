@@ -2,6 +2,7 @@
 # === Status bar
 tmux set -g status-style "bg=${prompt_colors[black_0]}"
 
+tmux set -g status-left " #[fg=${prompt_colors[yellow_1]},bold]#S#[nobold] "
 tmux set -g status-right "#[fg=${prompt_colors[white_1]}] %m/%d %H#[blink]:#[noblink]%M "
 
 # === Window status formatting

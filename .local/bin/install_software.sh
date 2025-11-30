@@ -24,7 +24,7 @@ GOLANGCI_LINT_VERSION="2.6.2"
 # renovate: datasource=github-releases depName=kubernetes/kubectl
 KUBECTL_VERSION="1.34.1"
 # renovate: datasource=github-releases depName=helm/helm
-HELM_VERSION="4.0.0"
+HELM_VERSION="3.19.2"
 # renovate: datasource=github-releases depName=kubernetes-sigs/kind
 KIND_VERSION="0.30.0"
 # renovate: datasource=github-releases depName=derailed/k9s

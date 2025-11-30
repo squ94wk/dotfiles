@@ -19,6 +19,11 @@ config.keys = {
     mods = 'CMD',
     action = wezterm.action.SendKey { key = 'w', mods = 'CTRL' },
   },
+  {
+    key = "Enter",
+    mods = "SHIFT",
+    action = wezterm.action { SendString = "\x1b\r" },
+  },
 }
 
 config.colors = {

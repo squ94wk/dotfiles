@@ -7,6 +7,39 @@ nnoremap Q <nop>
 " Useful mappings
 nnoremap Y y$
 
+" Enable Mac-style navigation (Option+arrows for words, Cmd+arrows for lines/file)
+if system('uname') =~# 'Darwin'
+  " macOS: Option+arrows and Command+arrows
+  nnoremap <M-Left> b
+  nnoremap <M-Right> w
+  inoremap <M-Left> <C-o>b
+  inoremap <M-Right> <C-o>w
+  vnoremap <M-Left> b
+  vnoremap <M-Right> w
+
+  nnoremap <S-Left> ^
+  nnoremap <S-Right> $
+  inoremap <S-Left> <C-o>^
+  inoremap <S-Right> <C-o>$
+  vnoremap <S-Left> ^
+  vnoremap <S-Right> $
+
+  nnoremap <S-Up> gg
+  nnoremap <S-Down> G
+  inoremap <S-Up> <C-o>gg
+  inoremap <S-Down> <C-o>G
+  vnoremap <S-Up> gg
+  vnoremap <S-Down> G
+else
+  " Linux: Ctrl+arrows for word navigation
+  nnoremap <C-Left> b
+  nnoremap <C-Right> w
+  inoremap <C-Left> <C-o>b
+  inoremap <C-Right> <C-o>w
+  vnoremap <C-Left> b
+  vnoremap <C-Right> w
+endif
+
 " visuals
 syntax enable
 

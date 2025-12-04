@@ -23,6 +23,31 @@ if [[ "$UPDATE" == "true" ]]; then
 fi
 
 source "${ZSH_PLUGIN_DIR}/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+
+# Enable Mac-style navigation (Option+arrows for words, Cmd+arrows for lines) in vi mode
+if [[ "$(uname)" == "Darwin" ]]; then
+  # macOS: Option+arrows and Command+arrows
+  bindkey -M viins '^[[1;3D' backward-word
+  bindkey -M viins '^[[1;3C' forward-word
+  bindkey -M viins '^[[1;2D' beginning-of-line
+  bindkey -M viins '^[[1;2C' end-of-line
+  bindkey -M viins '^[[1;2A' beginning-of-buffer-or-history
+  bindkey -M viins '^[[1;2B' end-of-buffer-or-history
+
+  bindkey -M vicmd '^[[1;3D' backward-word
+  bindkey -M vicmd '^[[1;3C' forward-word
+  bindkey -M vicmd '^[[1;2D' beginning-of-line
+  bindkey -M vicmd '^[[1;2C' end-of-line
+  bindkey -M vicmd '^[[1;2A' beginning-of-buffer-or-history
+  bindkey -M vicmd '^[[1;2B' end-of-buffer-or-history
+else
+  # Linux: Ctrl+arrows for word navigation, Home/End work by default
+  bindkey -M viins '^[[1;5D' backward-word
+  bindkey -M viins '^[[1;5C' forward-word
+  bindkey -M vicmd '^[[1;5D' backward-word
+  bindkey -M vicmd '^[[1;5C' forward-word
+fi
+
 source "${ZSH_PLUGIN_DIR}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 source "${ZSH_PLUGIN_DIR}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"

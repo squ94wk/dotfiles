@@ -24,6 +24,27 @@ config.keys = {
     mods = "SHIFT",
     action = wezterm.action { SendString = "\x1b\r" },
   },
+  -- Enable Mac-style navigation (Cmd+arrows for line/file movement) in vim/nvim/shell
+  {
+    key = 'LeftArrow',
+    mods = 'CMD',
+    action = wezterm.action.SendString '\x1b[1;2D',
+  },
+  {
+    key = 'RightArrow',
+    mods = 'CMD',
+    action = wezterm.action.SendString '\x1b[1;2C',
+  },
+  {
+    key = 'UpArrow',
+    mods = 'CMD',
+    action = wezterm.action.SendString '\x1b[1;2A',
+  },
+  {
+    key = 'DownArrow',
+    mods = 'CMD',
+    action = wezterm.action.SendString '\x1b[1;2B',
+  },
 }
 
 config.colors = {

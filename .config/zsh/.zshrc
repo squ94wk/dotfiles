@@ -50,6 +50,11 @@ fi
 
 source "${ZSH_PLUGIN_DIR}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# Performance optimizations for zsh-autosuggestions
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1  # Disable automatic rebinding (big speedup)
+export ZSH_AUTOSUGGEST_USE_ASYNC=1      # Use async for suggestions
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20  # Don't suggest for long commands
+
 source "${ZSH_PLUGIN_DIR}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "${ZSH_PLUGIN_DIR}/zsh-async/async.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
@@ -88,6 +93,7 @@ ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(autosuggest_partial_wordwise)
 source "${ZSH_PLUGIN_DIR}/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
 bindkey '^I' fzf_completion
 export ZSH_FZF_HISTORY_SEARCH_DATES_IN_SEARCH=0
+export ZSH_FZF_HISTORY_SEARCH_EVENT_NUMBERS=0
 source "${ZSH_PLUGIN_DIR}/zsh-fzf-history-search/zsh-fzf-history-search.zsh"
 
 # init completion

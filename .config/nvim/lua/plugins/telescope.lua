@@ -64,6 +64,10 @@ return {
             },
           },
         },
+        oldfiles = {
+          sorting_strategy = "ascending",
+          layout_config = { prompt_position = "top" },
+        },
         buffers = {
           initial_mode = "normal",
           sort_mru = true,

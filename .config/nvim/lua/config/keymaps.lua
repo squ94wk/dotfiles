@@ -5,6 +5,8 @@ keymap("n", "Q", "<nop>")
 
 keymap("n", "Y", "y$")
 
+keymap("n", "gc", "gcc", { remap = true, desc = "Comment line" })
+
 keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
 

@@ -76,6 +76,7 @@ alt-ctrl-cmd-semicolon = 'mode service'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main']
 f = ['layout floating tiling', 'mode main']
+c = ['fullscreen', 'mode main']
 
 alt-ctrl-cmd-left = ['move left', 'mode main']
 alt-ctrl-cmd-down = ['move down', 'mode main']

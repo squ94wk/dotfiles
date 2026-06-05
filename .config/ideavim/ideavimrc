@@ -1,10 +1,17 @@
 " Navigation
-nmap ge <Action>(RecentFiles)
-nmap gp <Action>(GotoFile)
-nmap gf <Action>(ActivateProjectToolWindow)
-nmap g/ <Action>(FindInPath)
-xmap g/ <Action>(FindInPath)
-nmap gt <Action>(ActivateTerminalToolWindow)
+let mapleader=" "
+
+"nmap ge <Action>(RecentFiles)
+nmap <leader>fb <Action>(RecentFiles)
+"nmap gp <Action>(GotoFile)
+nmap <leader>ff <Action>(GotoFile)
+"nmap gf <Action>(ActivateProjectToolWindow)
+nmap <leader>e <Action>(ActivateProjectToolWindow)
+"nmap g/ <Action>(FindInPath)
+"xmap g/ <Action>(FindInPath)
+nmap <leader>fg <Action>(FindInPath)
+xmap <leader>fg <Action>(FindInPath)
+"nmap gt <Action>(ActivateTerminalToolWindow)
 
 " nmap gS <Action>(GotoSymbol)
 " nmap gs <Action>(FileStructurePopup)

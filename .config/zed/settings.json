@@ -7,29 +7,61 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "telemetry": {
     "metrics": false,
     "diagnostics": false
   },
+  "edit_predictions": {
+    "mode": "subtle"
+  },
   "agent": {
+    "dock": "right",
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet"
+    },
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-thinking-latest"
+      "model": "claude-sonnet-4"
     },
-    "version": "2"
   },
+  "show_completions_on_input": true,
   "tab_bar": {
     "show": false
   },
   "ui_font_size": 16,
   "buffer_font_size": 15,
+  "minimap": {
+    "show": "auto",
+    "thumb": "always",
+"current_line_highlight": "gutter"
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": true,
+    "selections_menu": true,
+    "agent_review": true,
+    "code_actions": true
+  },
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "on_yank"
   },
   "autosave": "on_focus_change",
   "format_on_save": "off",
-  "auto_update": false,
+  "auto_update": true,
   "languages": {
     "Go": {
       "format_on_save": "on"

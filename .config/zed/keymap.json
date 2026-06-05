@@ -12,10 +12,10 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "g f": "project_panel::ToggleFocus",
-      "g e": "tab_switcher::Toggle",
-      "g t": "terminal_panel::ToggleFocus",
-      "g p": "file_finder::Toggle"
+      "space e": "project_panel::ToggleFocus",
+      "space f f": "file_finder::Toggle",
+      "space f b": "tab_switcher::Toggle",
+      "space f g": "project_search::ToggleFocus"
     }
   },
   {

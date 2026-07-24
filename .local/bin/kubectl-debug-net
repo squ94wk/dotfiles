@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check if -- separator exists
+has_separator=false
+for arg in "$@"; do
+    if [[ "$arg" == "--" ]]; then
+        has_separator=true
+        break
+    fi
+done
+
+# Build kubectl debug command with custom profile for network capabilities
+custom_profile=$(mktemp)
+trap "rm -f $custom_profile" EXIT
+cat > "$custom_profile" <<'EOF'
+{
+  "securityContext": {
+    "capabilities": {
+      "add": ["ALL"]
+    }
+  }
+}
+EOF
+kubectl_args=(debug -q -it --image nicolaka/netshoot --custom "$custom_profile")
+
+if [[ "$has_separator" == true ]]; then
+    # Pass through all args as-is
+    kubectl_args+=("$@")
+else
+    # No separator, add default command
+    kubectl_args+=("$@" -- bash)
+fi
+
+kubectl "${kubectl_args[@]}"

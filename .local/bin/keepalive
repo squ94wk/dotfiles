@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Run a command in a loop, restarting it when it exits.
+# Backs off exponentially on rapid failures so a broken command
+# doesn't turn into a busy loop; resets once a run stays up long enough.
+#
+# Usage: keepalive <command> [args...]
+#   e.g. keepalive vpn connect
+
+set -u
+
+min_delay=1        # seconds, first backoff step
+max_delay=300      # seconds, backoff ceiling
+reset_after=60     # a run lasting at least this long is "healthy" -> reset delay
+
+if [ "$#" -eq 0 ]; then
+	echo "usage: keepalive <command> [args...]" >&2
+	exit 2
+fi
+
+delay=$min_delay
+
+while true; do
+	start=$(date +%s)
+	"$@"
+	status=$?
+	elapsed=$(( $(date +%s) - start ))
+
+	if [ "$elapsed" -ge "$reset_after" ]; then
+		delay=$min_delay
+	fi
+
+	echo "command exited (status=$status) after ${elapsed}s; retrying in ${delay}s" >&2
+	sleep "$delay"
+
+	delay=$(( delay * 2 ))
+	[ "$delay" -gt "$max_delay" ] && delay=$max_delay
+done

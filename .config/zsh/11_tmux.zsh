@@ -31,3 +31,9 @@ tmux_start() {
     tmux_session "$name" && break
   done
 }
+
+# On an interactive terminal outside tmux, join or create the next free session;
+# once every session is taken, fall through to a plain shell.
+if [[ -z "$TMUX" ]]; then
+  tmux_start && exit
+fi

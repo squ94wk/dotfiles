@@ -141,4 +141,3 @@ setopt interactivecomments
 
 # Stop word deletion at slashes, dots, hyphens, underscores, colons, @, and =
 WORDCHARS=${WORDCHARS//[\/.-_:@=]}
-

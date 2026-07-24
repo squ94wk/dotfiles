@@ -36,6 +36,7 @@ return {
       filtered_items = {
         hide_dotfiles = false,
         hide_gitignored = false,
+        never_show = { ".git" },
       },
       -- Don't change vim's working directory when navigating
       hijack_netrw_behavior = "open_default",

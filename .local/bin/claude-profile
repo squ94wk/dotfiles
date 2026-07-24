@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Wrapper to use different Claude config based on current directory
+# Work profile: ~/.config/claude/work/
+# Personal profile: ~/.claude (default)
+
+current_dir="$(pwd)"
+
+# Use personal profile if:
+# - under ~/git/github.com/squ94wk/, OR
+# - under ~/ but NOT under ~/git/
+if [[ "$current_dir" == "$HOME/git/github.com/squ94wk"* ]] || \
+   [[ "$current_dir" == "$HOME"* && "$current_dir" != "$HOME/git"* ]]; then
+    # Use default personal config (no CLAUDE_CONFIG_DIR override)
+    exec claude "$@"
+else
+    # Use work profile
+    export CLAUDE_CONFIG_DIR="$HOME/.config/claude/work"
+    exec claude "$@"
+fi

@@ -118,6 +118,9 @@ done
 for file in ${XDG_CONFIG_HOME}/zsh/*.zsh; do
 	source "$file"
 done
+for file in ${XDG_CONFIG_HOME}/zsh/local/*.zsh; do
+	[[ -f "$file" ]] && source "$file"
+done
 
 # VIM plugins
 if [[ "$UPDATE" == "true" ]]; then
@@ -138,3 +141,4 @@ setopt interactivecomments
 
 # Stop word deletion at slashes, dots, hyphens, underscores, colons, @, and =
 WORDCHARS=${WORDCHARS//[\/.-_:@=]}
+

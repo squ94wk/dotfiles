@@ -1,0 +1,11 @@
+[user]
+	name = Josef Mende
+	email = josef.mende@vcluster.com
+	signingkey = 2B9E5E7E3136E62B
+
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[url "ssh://git@github.com/loft-sh"]
+	insteadOf = https://github.com/loft-sh

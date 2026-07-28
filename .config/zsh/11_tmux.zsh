@@ -32,8 +32,11 @@ tmux_start() {
   done
 }
 
-# On an interactive terminal outside tmux, join or create the next free session;
-# once every session is taken, fall through to a plain shell.
+# Outside tmux: join or create the next free session, falling through to a plain
+# shell once every session is taken. Inside tmux: apply the theme from here, where
+# prompt_colors is in scope (theme.zsh under tmux run-shell has no shell vars).
 if [[ -z "$TMUX" ]]; then
   tmux_start && exit
+else
+  source "${XDG_CONFIG_HOME}/tmux/theme.zsh"
 fi

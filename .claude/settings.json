@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "env": {
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "250000"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.local/bin/claude-statusline",
+    "refreshInterval": 60
+  },
+  "attribution": {
+    "commit": ""
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "showClearContextOnPlanAccept": true,
+  "skipAutoPermissionPrompt": true
+}

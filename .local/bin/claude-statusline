@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Claude Code status line: context used against the auto-compact threshold,
+# plus 5-hour and weekly plan quota.
+
+input=$(cat)
+
+IFS=$'\t' read -r model dir tokens window used5h reset5h used7d <<<"$(
+	jq -r '[
+		.model.display_name // "?",
+		(.workspace.current_dir // "" | split("/") | last),
+		(.context_window.total_input_tokens // 0),
+		(.context_window.context_window_size // 200000),
+		(.rate_limits.five_hour.used_percentage // -1 | round),
+		(.rate_limits.five_hour.resets_at // 0),
+		(.rate_limits.seven_day.used_percentage // -1 | round)
+	] | @tsv' <<<"$input"
+)"
+
+# Auto-compact fires 33k below the window: a 20k output reserve plus a 13k safety
+# margin. CLAUDE_CODE_AUTO_COMPACT_WINDOW overrides the model's window when set,
+# and .context_window.used_percentage always measures against the full model
+# window, so neither is usable here.
+limit=$((${CLAUDE_CODE_AUTO_COMPACT_WINDOW:-$window} - 33000))
+((limit < 1)) && limit=1
+pct=$((tokens * 100 / limit))
+
+filled=$((pct / 10))
+((filled > 10)) && filled=10
+bar=""
+for ((i = 0; i < 10; i++)); do
+	((i < filled)) && bar+="▓" || bar+="░"
+done
+
+if ((pct < 60)); then
+	color=$'\033[32m'
+elif ((pct < 85)); then
+	color=$'\033[33m'
+else
+	color=$'\033[31m'
+fi
+reset=$'\033[0m'
+dim=$'\033[2m'
+
+line="${dim}${model} · ${dir}${reset} · ${color}${bar} ${pct}%${reset} ${dim}$((tokens / 1000))k/$((limit / 1000))k${reset}"
+
+if ((used5h >= 0)); then
+	left=$((reset5h - $(date +%s)))
+	((left < 0)) && left=0
+	line+=" ${dim}·${reset} 5h ${used5h}% ${dim}↺$((left / 3600))h$((left % 3600 / 60))m${reset}"
+fi
+
+((used7d >= 0)) && line+=" ${dim}·${reset} wk ${used7d}%"
+
+echo "$line"

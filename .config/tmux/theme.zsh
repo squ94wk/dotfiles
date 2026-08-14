@@ -12,9 +12,9 @@ tmux setw -g window-status-current-format  " #I #[nobold]#W "
 tmux setw -g window-status-style           "fg=${prompt_colors[bg]},bg=${prompt_colors[black_2]}"
 tmux setw -g window-status-current-style   "fg=${prompt_colors[bg]},bg=${prompt_colors[yellow_1]},bold"
 
-# === Pane border styling
-tmux set -g pane-active-border-style "fg=${prompt_colors[yellow_1]}"
-tmux set -g pane-border-style        "fg=${prompt_colors[black_2]}"
+# === Pane border styling: blue while the pane's foreground command is ssh
+tmux set -g pane-active-border-style "#{?#{==:#{pane_current_command},ssh},fg=${prompt_colors[blue_1]},fg=${prompt_colors[yellow_1]}}"
+tmux set -g pane-border-style        "#{?#{==:#{pane_current_command},ssh},fg=${prompt_colors[blue_1]},fg=${prompt_colors[black_2]}}"
 
 # === Pane background: active pane slightly brighter
 tmux set -g window-style        "bg=${prompt_colors[bg]}"

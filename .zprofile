@@ -1,1 +1,1 @@
-/Users/squ94wk/.config/zsh/.zprofile
+.config/zsh/.zprofile

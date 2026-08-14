@@ -1,1 +1,1 @@
-/Users/squ94wk/.config/zsh/.zshenv
+.config/zsh/.zshenv

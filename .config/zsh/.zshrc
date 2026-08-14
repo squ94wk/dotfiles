@@ -118,8 +118,8 @@ done
 for file in ${XDG_CONFIG_HOME}/zsh/*.zsh; do
 	source "$file"
 done
-for file in ${XDG_CONFIG_HOME}/zsh/local/*.zsh; do
-	[[ -f "$file" ]] && source "$file"
+for file in ${XDG_CONFIG_HOME}/zsh/local/*.zsh(N); do
+	source "$file"
 done
 
 # VIM plugins
